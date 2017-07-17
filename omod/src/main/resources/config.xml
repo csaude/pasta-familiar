@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+
+	<!-- Module Properties -->
+	<id>${project.parent.artifactId}</id>
+	<name>${project.parent.name}</name>
+	<version>${project.parent.version}</version>
+	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
+	<author>Eurico Jose - FGH</author>
+	<description>
+		${project.parent.description}
+	</description>
+	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
+	<require_version>${openMRSVersion}</require_version>
+	<!-- / Module Properties -->
+
+	
+	<!-- Module Activator -->
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.GaacActivator</activator>
+	
+	
+	<!-- Adds link to admin page -->
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
+	</extension>
+	
+	
+	<!-- Privileges -->
+	<privilege>
+		<name>Manage Affinity Types</name>
+		<description>Able to add/edit/retire affinity types</description>
+	</privilege>
+	<privilege>
+		<name>View Affinity Types</name>
+		<description>Able to view affinity types</description>
+	</privilege>
+
+	<privilege>
+		<name>Manage Reason Leaving Gaac Types</name>
+		<description>Able to add/edit/retire reason leaving gaac types
+		</description>
+	</privilege>
+
+	<privilege>
+		<name>View Reason Leaving Gaac Types</name>
+		<description>Able to view reason leaving gaac types</description>
+	</privilege>
+
+	<privilege>
+		<name>Manage Gaac</name>
+		<description>Able to add/edit/retire gaac</description>
+	</privilege>
+
+	<privilege>
+		<name>View Gaac</name>
+		<description>Able to view gaac</description>
+	</privilege>
+
+	<privilege>
+		<name>Manage Gaac Member</name>
+		<description>Able to add/edit/retire gaac member</description>
+	</privilege>
+
+	<privilege>
+		<name>View Gaac Member</name>
+		<description>Able to view gaac member</description>
+	</privilege>
+	
+	
+	
+	<!-- Maps hibernate file's, if present -->
+	<mappingFiles>
+				
+		AffinityType.hbm.xml
+		ReasonLeavingGaacType.hbm.xml
+		Gaac.hbm.xml
+		GaacMember.hbm.xml
+				
+	</mappingFiles>
+
+	<!-- Internationalization -->
+	<!-- All message codes should start with ${project.parent.artifactId}. -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
+	</messages>
+	<messages>
+		<lang>pt</lang>
+		<file>messages_pt.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+</module>
+
