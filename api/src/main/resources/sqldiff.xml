@@ -15,7 +15,7 @@
 
  
 	<diff>
-		<version>1.0-SNAPSHOT</version>
+		<version>1-2-SNAPSHOT</version>
 		<author>Eurico Jose - FGH</author>
 		<date>Jun 11 2012</date>
 		<description>Create Gaac tables for storing data of gaac module</description>
@@ -153,6 +153,122 @@
 		insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(2,'Desistiu','Desistiram ou foram retirados do Gaac',1,now(),'d7df4950-c2ef-44f0-a8a6-8a328a21a19c');
 		insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(3,'Obitou','Obitou em Gaac',1,now(),'52c37b18-ad27-42ed-851d-dcf1d81471da');
 		insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(4,'Suspenso','Suspenso do Gaac',1,now(),'9dd52ebe-632d-49b2-8aa8-c3a5ca185ffe');
+			
+	    		
+				
+		DROP TABLE IF EXISTS family_member_type;
+		
+		CREATE TABLE `family_member_type` (
+  		`family_member_type_id` int(11) NOT NULL AUTO_INCREMENT,
+  		`name` varchar(50) NOT NULL DEFAULT '',
+  		`description` text,
+ 		`creator` int(11) NOT NULL DEFAULT '0',
+  		`date_created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  		`retired` smallint(6) NOT NULL DEFAULT '0',
+  		`retired_by` int(11) DEFAULT NULL,
+  		`date_retired` datetime DEFAULT NULL,
+  		`retire_reason` varchar(255) DEFAULT NULL,
+  		`uuid` char(38) NOT NULL,
+  		PRIMARY KEY (`family_member_type_id`),
+  		UNIQUE KEY `family_member_type_uuid_index` (`uuid`),
+ 		KEY `user_who_created_type_family_member_type` (`creator`),
+  		KEY `user_who_retired_family_member_type` (`retired_by`),
+  		KEY `retired_status_family_member_type` (`retired`),
+  		CONSTRAINT `user_who_created_type_family_member_type` FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`),
+  		CONSTRAINT `user_who_retired_family_member_type` FOREIGN KEY (`retired_by`) REFERENCES `users` (`user_id`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		
+	
+		DROP TABLE IF EXISTS family;
+		
+		CREATE TABLE `family` (
+  		`family_id` int(11) NOT NULL AUTO_INCREMENT,
+  		`description` text,
+  		`family_identifier` varchar(50) DEFAULT NULL,
+  		`start_date` DATE NOT NULL DEFAULT '0000-00-00',
+		`end_date` DATE NULL DEFAULT '0000-00-00',
+  		`focal_patient_id` int(11) DEFAULT '0',
+  		`location_id` int(11) DEFAULT NULL,
+  		`crumbled` smallint(2) DEFAULT '0',
+  		`reason_crumbled` varchar(255) DEFAULT NULL,
+  		`date_crumbled` date DEFAULT NULL,
+  		`creator` int(11) NOT NULL DEFAULT '0',
+  		`date_created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  		`changed_by` int(11) DEFAULT '0',
+  		`date_changed` datetime DEFAULT '0000-00-00 00:00:00',
+  		`voided` smallint(6) NOT NULL DEFAULT '0',
+  		`voided_by` int(11) DEFAULT NULL,
+  		`date_voided` datetime DEFAULT NULL,
+  		`void_reason` varchar(255) DEFAULT NULL,
+  		`uuid` char(38) NOT NULL,
+  		PRIMARY KEY (`family_id`),
+  		UNIQUE KEY `pk_family` (`family_id`),
+  		KEY `fk_family_focal_patient` (`focal_patient_id`),
+  		KEY `fk_family_user_who_created` (`creator`),
+  		KEY `fk_family_user_who_voided` (`voided_by`),
+  		KEY `fk_family_user_who_changed` (`changed_by`),
+  		KEY `fk_family_location` (`location_id`),
+  		CONSTRAINT `fk_family_focal_patient` FOREIGN KEY (`focal_patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  		CONSTRAINT `fk_family_location` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`),
+  		CONSTRAINT `fk_family_user_who_changed` FOREIGN KEY (`changed_by`) REFERENCES `users` (`user_id`),
+  		CONSTRAINT `fk_family_user_who_created` FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`),
+  		CONSTRAINT `fk_family_user_who_voided` FOREIGN KEY (`voided_by`) REFERENCES `users` (`user_id`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+		
+		DROP TABLE IF EXISTS family_member;
+		
+		CREATE TABLE `family_member` (
+  		`family_member_id` int(11) NOT NULL AUTO_INCREMENT,
+  		`family_id` int(11) NOT NULL DEFAULT '0',
+  		`member_id` int(11) NOT NULL DEFAULT '0',
+		`family_member_type` int(11) DEFAULT '0',
+  		`start_date` date NOT NULL DEFAULT '0000-00-00',
+  		`end_date` date DEFAULT NULL,
+  		`reason_leaving_type` int(11) DEFAULT NULL,
+  		`description` text,
+  		`leaving` smallint(1) DEFAULT '0',
+  		`restart` smallint(1) DEFAULT '0',
+ 		`restart_date` date DEFAULT NULL,
+  		`creator` int(11) NOT NULL DEFAULT '0',
+  		`date_created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  		`changed_by` int(11) DEFAULT NULL,
+  		`date_changed` datetime DEFAULT NULL,
+  		`voided` smallint(6) NOT NULL DEFAULT '0',
+  		`voided_by` int(11) DEFAULT NULL,
+  		`date_voided` datetime DEFAULT NULL,
+  		`void_reason` varchar(255) DEFAULT NULL,
+  		`uuid` char(38) NOT NULL,
+  		PRIMARY KEY (`family_member_id`),
+  		KEY `fk_family_member_user_who_created` (`creator`),
+  		KEY `fk_family_member_user_who_voided` (`voided_by`),
+  		KEY `fk_family_member_user_who_changed` (`changed_by`),
+  		KEY `fk_family_member_family` (`family_id`),
+  		KEY `fk_family_member_patient` (`member_id`),
+		KEY `fk_family_member_type` (`family_member_type`),
+  		KEY `fk_family_member_reason_leaving` (`reason_leaving_type`),
+		CONSTRAINT `fk_family_member_type` FOREIGN KEY (`family_member_type`) REFERENCES `family_member_type` (`family_member_type_id`),
+  		CONSTRAINT `fk_family_member_family` FOREIGN KEY (`family_id`) REFERENCES `family` (`family_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  		CONSTRAINT `fk_family_member_patient` FOREIGN KEY (`member_id`) REFERENCES `patient` (`patient_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  		CONSTRAINT `fk_family_member_reason_leaving` FOREIGN KEY (`reason_leaving_type`) REFERENCES `gaac_reason_leaving_type` (`gaac_reason_leaving_type_id`),
+  		CONSTRAINT `fk_family_member_user_who_changed` FOREIGN KEY (`changed_by`) REFERENCES `users` (`user_id`),
+  		CONSTRAINT `fk_family_member_user_who_created` FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`),
+  		CONSTRAINT `fk_family_member_user_who_voided` FOREIGN KEY (`voided_by`) REFERENCES `users` (`user_id`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		
+		
+		
+		insert into family_member_type(family_member_type_id,name,description,creator,date_created,uuid) values(1,'Mae','Mae da Familia',1,now(),'ab21c502-4e04-11e7-aebf-080027f6a6ef');
+		insert into family_member_type(family_member_type_id,name,description,creator,date_created,uuid) values(2,'Pai','Pai da Familia',1,now(),'ab375627-4e04-11e7-aebf-080027f6a6ef');
+		insert into family_member_type(family_member_type_id,name,description,creator,date_created,uuid) values(3,'Avo','Avo da Familia',1,now(),'ab4a2933-4e04-11e7-aebf-080027f6a6ef');	
+		insert into family_member_type(family_member_type_id,name,description,creator,date_created,uuid) values(4,'Tio','Tio da Familia',1,now(),'ab6314c2-4e04-11e7-aebf-080027f6a6ef');
+		insert into family_member_type(family_member_type_id,name,description,creator,date_created,uuid) values(5,'Filho','Filho da Familia',1,now(),'ab80826a-4e04-11e7-aebf-080027f6a6ef');
+		insert into family_member_type(family_member_type_id,name,description,creator,date_created,uuid) values(6,'Sobrinho','Sobrinho da Familia',1,now(),'ab9a2319-4e04-11e7-aebf-080027f6a6ef');
+		insert into family_member_type(family_member_type_id,name,description,creator,date_created,uuid) values(7,'Irmao','Irmao da Familia',1,now(),'abab23f6-4e04-11e7-aebf-080027f6a6ef');
+			
+			
+			
+			
 			
 		</sql>
 	</diff>
