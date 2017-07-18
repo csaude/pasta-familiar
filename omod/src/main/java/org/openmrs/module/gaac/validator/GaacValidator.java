@@ -38,8 +38,8 @@ public class GaacValidator implements Validator {
 				if (temp != null) {
 					errors.rejectValue("name", "gaac.error.name.inuse");
 				}
-				List<Gaac> temp1 = gs.getGaacByIdentifierAndLocation(gaac.getGaacIdentifier(),gaac.getLocation());
-				if (temp1 != null){
+				temp = gs.getGaacByIdentifier(gaac.getGaacIdentifier());
+				if (temp != null){
 					errors.rejectValue("gaacIdentifier",
 							"gaac.error.identifier.inuse");}
 			}else
