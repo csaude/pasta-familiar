@@ -23,6 +23,9 @@ import org.openmrs.Patient;
 import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.gaac.AffinityType;
+import org.openmrs.module.gaac.Family;
+import org.openmrs.module.gaac.FamilyMember;
+import org.openmrs.module.gaac.FamilyMemberType;
 import org.openmrs.module.gaac.Gaac;
 import org.openmrs.module.gaac.GaacMember;
 import org.openmrs.module.gaac.ReasonLeavingGaacType;
@@ -284,4 +287,162 @@ public class GaacServiceImpl extends BaseOpenmrsService implements
 			   {
 			     return this.dao.getGaacByIdentifierAndLocation(identifier,paramLocation);
 			   }
+
+	@Override
+	public Family getFamily(Integer paramInteger) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Family saveFamily(Family paramFamily) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void purgeFamily(Family paramFamily) throws APIException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Family unretireFamily(Family paramFamily) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Family> getAllFamilyEnrolled(Date paramDate1, Date paramDate2, Location paramLocation,
+			FamilyMemberType paramFamilyType) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Family> getAllFamily(Boolean paramBoolean) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Family getFamilyByUUID(String paramString) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Family> getAllOfLocationFamily(Location paramLocation) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Family getFamilyByIdentifier(String paramString) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FamilyMember> getAllFamilyMemberHistory(Patient paramPatient) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FamilyMember> getAllOfFamilyType(FamilyMemberType paramFamilyType) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Family getFamilyMember(Patient paramPatient) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Family retireFamily(Family paramFamily, String paramString) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Family> getAllFamily() throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void purgeFamilyType(FamilyMemberType paramFamilyMemberType) throws APIException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<FamilyMemberType> getAllFamilyType() throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMemberType getFamilyTypeByName(String paramString) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMemberType getFamilyTypeById(Integer paramInteger) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMemberType saveFamilyType(FamilyMemberType paramFamilyMemberType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMemberType getFamilyTypeByUUID(String paramString) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FamilyMemberType> getAllFamilyType(Boolean paramBoolean) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMemberType retireFamilyType(FamilyMemberType paramFamilyMemberType, String paramString)
+			throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMemberType unretireFamilyType(FamilyMemberType paramFamilyMemberType) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMember getFamilyMemberByMember(Patient paramPatient) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMember getFamilyMember(Integer paramInteger) throws APIException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMember saveFamilyMember(FamilyMember paramFamilyMember) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

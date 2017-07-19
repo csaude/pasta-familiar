@@ -20,6 +20,9 @@ import org.openmrs.Location;
 import org.openmrs.Patient;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.gaac.AffinityType;
+import org.openmrs.module.gaac.Family;
+import org.openmrs.module.gaac.FamilyMember;
+import org.openmrs.module.gaac.FamilyMemberType;
 import org.openmrs.module.gaac.Gaac;
 import org.openmrs.module.gaac.GaacMember;
 import org.openmrs.module.gaac.ReasonLeavingGaacType;
@@ -99,4 +102,47 @@ public interface GaacServiceDAO {
 	//Damasceno
 	public List<GaacMember> getAllGaacMemberHistory(Patient paramPatient) throws DAOException;
 	public List<Gaac> getGaacByIdentifierAndLocation(String paramString,Location paramLocation) throws DAOException;
+	
+	
+	//Sacur Pasta Familiar
+	public FamilyMemberType saveFamilyType(FamilyMemberType paramFamilyType);
+
+	public void deleteFamilyType(FamilyMemberType paramFamilyType) throws DAOException;
+
+	public FamilyMemberType getFamilyType(Integer paramInteger) throws DAOException;
+
+	public FamilyMemberType getFamilyType(String paramString) throws DAOException;
+
+	public FamilyMemberType getFamilyTypeByUUID(String paramString) throws DAOException;
+
+	public List<FamilyMemberType> getAllFamilyTypes(Boolean paramBoolean) throws DAOException;	
+	public Family saveFamily(Family paramFamily);
+
+	public Family getFamily(Integer paramInteger) throws DAOException;
+
+	public Family getFamilyByUUID(String paramString) throws DAOException;
+
+	public Family getFamilyByIdentifier(String paramString) throws DAOException;
+	
+	public Family getFamilyMember(Patient paramPatient) throws DAOException;
+
+	public List<Family> getAllOfLocationFamily(Location paramLocation) throws DAOException;
+
+	public List<Family> getAllFamily(Boolean paramBoolean) throws DAOException;
+
+	public List<Family> getAllFamilyEnrolled(Date paramDate1, Date paramDate2, Location paramLocation,
+			FamilyMemberType paramFamilyType) throws DAOException;
+
+	public void deleteFamily(Family paramFamily) throws DAOException;
+
+	public FamilyMember saveFamilyMember(FamilyMember paramFamilyMember);
+
+	public FamilyMember getFamilyMember(Integer paramInteger) throws DAOException;
+
+	public FamilyMember getFamilyMemberByMember(Patient paramPatient) throws DAOException;
+
+	public List<FamilyMember> getAllFamilyMemberHistory(Patient paramPatient) throws DAOException;
+
+	public List<FamilyMember> getAllOfFamilyType( FamilyMemberType paramFamilyType) throws DAOException;
+	
 }

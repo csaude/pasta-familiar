@@ -26,6 +26,9 @@ import org.openmrs.Location;
 import org.openmrs.Patient;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.gaac.AffinityType;
+import org.openmrs.module.gaac.Family;
+import org.openmrs.module.gaac.FamilyMember;
+import org.openmrs.module.gaac.FamilyMemberType;
 import org.openmrs.module.gaac.Gaac;
 import org.openmrs.module.gaac.GaacMember;
 import org.openmrs.module.gaac.ReasonLeavingGaacType;
@@ -250,6 +253,127 @@ public class HibernateGaacServiceDAO implements GaacServiceDAO {
 		criteria.add(Expression.eq("gaacIdentifier", identifier));
 		criteria.add(Expression.eq("location", paramLocation));
 		return criteria.list();
+	}
+
+	@Override
+	public FamilyMemberType saveFamilyType(FamilyMemberType paramFamilyType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteFamilyType(FamilyMemberType paramFamilyType) throws DAOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public FamilyMemberType getFamilyType(Integer paramInteger) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMemberType getFamilyType(String paramString) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMemberType getFamilyTypeByUUID(String paramString) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FamilyMemberType> getAllFamilyTypes(Boolean paramBoolean) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Family saveFamily(Family paramFamily) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Family getFamily(Integer paramInteger) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Family getFamilyByUUID(String paramString) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Family getFamilyByIdentifier(String paramString) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Family getFamilyMember(Patient paramPatient) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Family> getAllOfLocationFamily(Location paramLocation) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Family> getAllFamily(Boolean paramBoolean) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Family> getAllFamilyEnrolled(Date paramDate1, Date paramDate2, Location paramLocation,
+			FamilyMemberType paramFamilyType) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteFamily(Family paramFamily) throws DAOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public FamilyMember saveFamilyMember(FamilyMember paramFamilyMember) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMember getFamilyMember(Integer paramInteger) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FamilyMember getFamilyMemberByMember(Patient paramPatient) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FamilyMember> getAllFamilyMemberHistory(Patient paramPatient) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FamilyMember> getAllOfFamilyType(FamilyMemberType paramFamilyType) throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
