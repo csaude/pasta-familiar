@@ -26,6 +26,9 @@ import org.openmrs.Location;
 import org.openmrs.Patient;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.module.gaac.AffinityType;
+import org.openmrs.module.gaac.Family;
+import org.openmrs.module.gaac.FamilyMember;
+import org.openmrs.module.gaac.FamilyMemberType;
 import org.openmrs.module.gaac.Gaac;
 import org.openmrs.module.gaac.GaacMember;
 import org.openmrs.module.gaac.ReasonLeavingGaacType;
@@ -251,5 +254,169 @@ public class HibernateGaacServiceDAO implements GaacServiceDAO {
 		criteria.add(Expression.eq("location", paramLocation));
 		return criteria.list();
 	}
+
+	//Sacur
+
+	@Override
+	public FamilyMemberType saveFamilyType(FamilyMemberType paramFamilyType) {
+		this.sessionFactory.getCurrentSession().saveOrUpdate(paramFamilyType);;
+		return paramFamilyType;
+	}
+
+	@Override
+	public void deleteFamilyType(FamilyMemberType paramFamilyType) throws DAOException {
+		this.sessionFactory.getCurrentSession().delete(paramFamilyType);
+		
+	}
+
+	@Override
+	public FamilyMemberType getFamilyType(Integer familyTypeMemberId) throws DAOException {
+		return (FamilyMemberType) this.sessionFactory.getCurrentSession().get(FamilyMemberType.class, familyTypeMemberId);
+		 
+	}
+
+	@Override
+	public FamilyMemberType getFamilyType(String name) throws DAOException {
+		Criteria c = this.sessionFactory.getCurrentSession().createCriteria(FamilyMemberType.class);
+		c.add(Expression.eq("retired", Boolean.valueOf(false)));
+		c.add(Expression.eq("name", name));
+		return (FamilyMemberType) c.uniqueResult();
+	}
+
+	@Override
+	public FamilyMemberType getFamilyTypeByUUID(String uuid) throws DAOException {
+		Criteria c = this.sessionFactory.getCurrentSession().createCriteria(
+				FamilyMemberType.class);
+		c.add(Expression.eq("retired", Boolean.valueOf(false)));
+		c.add(Expression.eq("uuid", uuid));
+		return (FamilyMemberType) c.uniqueResult();
+	}
+
+	@Override
+	public List<FamilyMemberType> getAllFamilyTypes(Boolean includeRetired) throws DAOException {
+		Criteria c = this.sessionFactory.getCurrentSession().createCriteria(
+				FamilyMemberType.class);
+		c.addOrder(Order.asc("name"));
+		if (!includeRetired.booleanValue())
+			c.add(Expression.eq("retired", Boolean.valueOf(false)));
+		return c.list();
+	}
+
+	@Override
+	public Family saveFamily(Family family) {
+		this.sessionFactory.getCurrentSession().saveOrUpdate(family);
+		return family;
+	}
+
+	@Override
+	public Family getFamily(Integer paramInteger) throws DAOException {
+		return (Family) this.sessionFactory.getCurrentSession().get(Family.class, paramInteger);
+		
+	}
+
+	@Override
+	public Family getFamilyByUUID(String uuid) throws DAOException {
+		Criteria criteria = this.sessionFactory.getCurrentSession()
+				.createCriteria(Family.class);
+		criteria.add(Expression.eq("voided", Boolean.valueOf(false)));
+		criteria.add(Expression.eq("uuid", uuid));
+		return (Family) criteria.uniqueResult();
+	}
+
+	@Override
+	public Family getFamilyByIdentifier(String identifier) throws DAOException {
+		Criteria criteria = this.sessionFactory.getCurrentSession()
+				.createCriteria(Family.class);
+		criteria.add(Expression.eq("voided", Boolean.valueOf(false)));
+		criteria.add(Expression.eq("familyIdentifier", identifier));
+		return (Family) criteria.uniqueResult();
+	}
+
+	@Override
+	public List<Family> getAllOfLocationFamily(Location location) throws DAOException {
+		Criteria criteria = this.sessionFactory.getCurrentSession()
+				.createCriteria(Family.class);
+		criteria.add(Expression.eq("voided", Boolean.valueOf(false)));
+		criteria.add(Expression.eq("location", location));
+		return criteria.list();
+	}
+
+	@Override
+	public List<FamilyMember> getAllOfFamilyType(FamilyMemberType familytype) throws DAOException {
+	
+			Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(Family.class);
+			criteria.add(Expression.eq("voided", Boolean.valueOf(false)));
+			criteria.add(Expression.eq("type", familytype));
+			return criteria.list();
+	}
+
+	@Override
+	public List<Family> getAllFamily(Boolean includeVoided) throws DAOException {
+		Criteria criteria = this.sessionFactory.getCurrentSession()
+				.createCriteria(Family.class);
+		if (!includeVoided.booleanValue())
+			criteria.add(Expression.eq("voided", Boolean.valueOf(false)));
+		return criteria.list();
+	}
+
+	@Override
+	public List<Family> getAllFamilyEnrolled(Date startDate, Date endDate, Location location,
+			FamilyMemberType familytype) throws DAOException {
+		
+		Criteria criteria = this.sessionFactory.getCurrentSession()
+				.createCriteria(Family.class);
+		criteria.add(Expression.eq("voided", Boolean.valueOf(false)));
+
+		criteria.add(Expression.between("startDate", startDate, endDate));
+		
+		if (location != null)
+			criteria.add(Expression.eq("location", location));
+		return criteria.list();
+	}
+
+	@Override
+	public void deleteFamily(Family family) throws DAOException {
+		this.sessionFactory.getCurrentSession().delete(family);
+		
+	}
+
+	@Override
+	public FamilyMember saveFamilyMember(FamilyMember member) {
+		this.sessionFactory.getCurrentSession().saveOrUpdate(member);
+		return member;
+	}
+
+	@Override
+	public FamilyMember getFamilyMember(Integer familyMemberId) throws DAOException {
+		return (FamilyMember) this.sessionFactory.getCurrentSession().get(
+				FamilyMember.class, familyMemberId);
+	}
+
+	@Override
+	public FamilyMember getFamilyMemberByMember(Patient member) throws DAOException {
+		Criteria criteria = this.sessionFactory.getCurrentSession()
+				.createCriteria(FamilyMember.class);
+		criteria.add(Expression.eq("voided", Boolean.valueOf(false)));
+		criteria.add(Expression.eq("member", member));
+		return (FamilyMember) criteria.uniqueResult();
+	}
+
+	@Override
+	public List<FamilyMember> getAllFamilyMemberHistory(Patient member) throws DAOException {
+		Criteria criteria = this.sessionFactory.getCurrentSession()
+				.createCriteria(FamilyMember.class);
+		criteria.add(Expression.eq("member", member));
+		return criteria.list();
+	}
+
+	@Override
+	public Family getFamilyMember(Patient focalPatient) throws DAOException {
+		Criteria criteria = this.sessionFactory.getCurrentSession()
+				.createCriteria(Family.class);
+		criteria.add(Expression.eq("voided", Boolean.valueOf(false)));
+		criteria.add(Expression.eq("focalPatient", focalPatient));
+		return (Family) criteria.uniqueResult();
+	}
+
 	
 }
