@@ -287,162 +287,163 @@ public class GaacServiceImpl extends BaseOpenmrsService implements
 			   {
 			     return this.dao.getGaacByIdentifierAndLocation(identifier,paramLocation);
 			   }
-
-	@Override
-	public Family getFamily(Integer paramInteger) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Family saveFamily(Family paramFamily) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void purgeFamily(Family paramFamily) throws APIException {
-		// TODO Auto-generated method stub
+	   
 		
+	   //Sacur
+	@Override
+	public FamilyMemberType saveFamilyType(FamilyMemberType paramFamilyType) {
+		return this.dao.saveFamilyType(paramFamilyType);
 	}
 
 	@Override
-	public Family unretireFamily(Family paramFamily) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+	public FamilyMemberType getFamilyTypeById(Integer familyId) throws APIException {
+		 return this.dao.getFamilyType(familyId);
 	}
 
 	@Override
-	public List<Family> getAllFamilyEnrolled(Date paramDate1, Date paramDate2, Location paramLocation,
-			FamilyMemberType paramFamilyType) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+	public FamilyMemberType getFamilyTypeByUUID(String uuid) throws APIException {
+		return this.dao.getFamilyTypeByUUID(uuid);
 	}
 
 	@Override
-	public List<Family> getAllFamily(Boolean paramBoolean) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Family getFamilyByUUID(String paramString) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Family> getAllOfLocationFamily(Location paramLocation) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Family getFamilyByIdentifier(String paramString) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<FamilyMember> getAllFamilyMemberHistory(Patient paramPatient) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<FamilyMember> getAllOfFamilyType(FamilyMemberType paramFamilyType) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Family getFamilyMember(Patient paramPatient) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Family retireFamily(Family paramFamily, String paramString) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Family> getAllFamily() throws APIException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void purgeFamilyType(FamilyMemberType paramFamilyMemberType) throws APIException {
-		// TODO Auto-generated method stub
-		
+	public FamilyMemberType getFamilyTypeByName(String name) throws APIException {
+		return this.dao.getFamilyType(name);
 	}
 
 	@Override
 	public List<FamilyMemberType> getAllFamilyType() throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+		 return this.dao.getAllFamilyTypes(Boolean.valueOf(false));
 	}
 
 	@Override
-	public FamilyMemberType getFamilyTypeByName(String paramString) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FamilyMemberType> getAllFamilyType(Boolean includeRetired) throws APIException {
+		return this.dao.getAllFamilyTypes(includeRetired);
 	}
 
 	@Override
-	public FamilyMemberType getFamilyTypeById(Integer paramInteger) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+	public FamilyMemberType retireFamilyType(FamilyMemberType familyType, String reason) throws APIException {
+		 if (reason == null)
+		       throw new IllegalArgumentException("the argument 'reason' is null");
+		 familyType.setRetired(Boolean.valueOf(true));
+		 familyType.setRetireReason(reason);
+		     this.dao.saveFamilyType(familyType);
+		     return familyType;
 	}
 
 	@Override
-	public FamilyMemberType saveFamilyType(FamilyMemberType paramFamilyMemberType) {
-		// TODO Auto-generated method stub
-		return null;
+	public FamilyMemberType unretireFamilyType(FamilyMemberType familyType) throws APIException {
+		familyType.setRetired(Boolean.valueOf(false));
+	     this.dao.saveFamilyType(familyType);
+	     return familyType;
 	}
 
 	@Override
-	public FamilyMemberType getFamilyTypeByUUID(String paramString) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+	public void purgeFamilyType(FamilyMemberType familyType) throws APIException {
+		 this.dao.deleteFamilyType(familyType);
+		
+	}
+
+
+	@Override
+	public Family saveFamily(Family family) {
+		return this.dao.saveFamily(family);
 	}
 
 	@Override
-	public List<FamilyMemberType> getAllFamilyType(Boolean paramBoolean) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+	public Family getFamily(Integer familyId) throws APIException {
+		
+		return this.dao.getFamily(familyId);
 	}
 
 	@Override
-	public FamilyMemberType retireFamilyType(FamilyMemberType paramFamilyMemberType, String paramString)
-			throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+	public Family getFamilyByUUID(String uuid) throws APIException {
+		return this.dao.getFamilyByIdentifier(uuid);
 	}
 
 	@Override
-	public FamilyMemberType unretireFamilyType(FamilyMemberType paramFamilyMemberType) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+	public Family getFamilyByIdentifier(String identifier) throws APIException {
+		return this.dao.getFamilyByIdentifier(identifier);
+	}
+
+	@Override
+	public List<Family> getAllOfLocationFamily(Location location) throws APIException {
+		return this.dao.getAllOfLocationFamily(location);
+	}
+
+	@Override
+	public List<FamilyMember> getAllOfFamilyType(FamilyMemberType paramFamilyType) throws APIException {
+		
+		return this.dao.getAllOfFamilyType(paramFamilyType);
+	}
+
+	@Override
+	public List<Family> getAllFamily() throws APIException {
+		return this.dao.getAllFamily(Boolean.valueOf(false));
+	}
+
+	@Override
+	public List<Family> getAllFamily(Boolean includedVoided) throws APIException {
+		return this.dao.getAllFamily(includedVoided);
+	}
+
+	@Override
+	public List<Family> getAllFamilyEnrolled(Date startDate, Date endDate, Location location,
+			FamilyMemberType familyType) throws APIException {
+	
+		return this.dao.getAllFamilyEnrolled(startDate, endDate, location, familyType);
+	}
+
+	@Override
+	public Family retireFamily(Family family, String reason) throws APIException {
+		 if (reason == null)
+		       throw new IllegalArgumentException("the argument 'reason' is null");
+		 family.setVoided(Boolean.valueOf(true));
+		 family.setVoidReason(reason);
+		     this.dao.saveFamily(family);
+		     return family;
+	}
+
+	@Override
+	public Family unretireFamily(Family family) throws APIException {
+		family.setVoided(Boolean.valueOf(true));
+		 family.setVoidReason(null);
+		    return this.dao.saveFamily(family);
+	}
+
+	@Override
+	public void purgeFamily(Family paramFamily) throws APIException {
+		this.dao.deleteFamily(paramFamily);
+		
+	}
+
+	@Override
+	public FamilyMember saveFamilyMember(FamilyMember familyMember) {
+		
+		return this.dao.saveFamilyMember(familyMember);
+	}
+
+	@Override
+	public FamilyMember getFamilyMember(Integer familyMemberId) throws APIException {
+		return this.dao.getFamilyMember(familyMemberId);
 	}
 
 	@Override
 	public FamilyMember getFamilyMemberByMember(Patient paramPatient) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.dao.getFamilyMemberByMember(paramPatient);
 	}
 
 	@Override
-	public FamilyMember getFamilyMember(Integer paramInteger) throws APIException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FamilyMember> getAllFamilyMemberHistory(Patient paramPatient) throws APIException {
+		return this.dao.getAllFamilyMemberHistory(paramPatient);
 	}
 
+	
+
 	@Override
-	public FamilyMember saveFamilyMember(FamilyMember paramFamilyMember) {
-		// TODO Auto-generated method stub
-		return null;
+	public Family getFamilyMember(Patient paramPatient) throws APIException {
+		return this.dao.getFamilyMember(paramPatient);
 	}
+
+
+	
 }
