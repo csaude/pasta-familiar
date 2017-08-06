@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.openmrs.BaseOpenmrsData;
 import org.openmrs.Patient;
+import org.openmrs.Relationship;
 
 public class FamilyMember extends BaseOpenmrsData {
 
@@ -17,27 +18,25 @@ public class FamilyMember extends BaseOpenmrsData {
 	private Date restartDate;
 	private Boolean leaving;
 	private Boolean restart;
-    private FamilyMemberType type;
-	
-	public FamilyMemberType getType() {
-		return type;
+	private Relationship relacao;
+
+	public Relationship getRelacao() {
+		return relacao;
 	}
 
-	public void setType(FamilyMemberType type) {
-		this.type = type;
+	public void setRelacao(Relationship relacao) {
+		this.relacao = relacao;
 	}
-	
-	
-	
+
 	@Override
 	public Integer getId() {
-		
-	  return getFamilyMemberId();
+
+		return getFamilyMemberId();
 	}
 
 	@Override
 	public void setId(Integer id) {
-		
+
 		setFamilyMemberId(id);
 	}
 
@@ -81,8 +80,6 @@ public class FamilyMember extends BaseOpenmrsData {
 		this.endDate = endDate;
 	}
 
-
-
 	public ReasonLeavingGaacType getReasonLeaving() {
 		return reasonLeaving;
 	}
@@ -123,10 +120,4 @@ public class FamilyMember extends BaseOpenmrsData {
 		this.restart = restart;
 	}
 
-	
-	
-	
-	
-	
-	
 }

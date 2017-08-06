@@ -45,7 +45,7 @@
 			column="restart_date" not-null="false" length="19" />
 
 		<!-- Associations -->	
-		<many-to-one name="type" class="org.openmrs.module.gaac.FamilyMemberType" not-null="false" column="family_member_type"/>	
+		<many-to-one name="relacao" class="org.openmrs.Relationship" not-null="false" column="family_member_relacao"/>	
 		<many-to-one name="changedBy" class="org.openmrs.User" not-null="false" column="changed_by"/>		
 		<many-to-one name="member" class="org.openmrs.Patient" not-null="false" column="member_id"/>			
 		<many-to-one name="family" class="Family" column="family_id" not-null="false"/>

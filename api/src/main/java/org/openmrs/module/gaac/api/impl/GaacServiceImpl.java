@@ -25,7 +25,6 @@ import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.gaac.AffinityType;
 import org.openmrs.module.gaac.Family;
 import org.openmrs.module.gaac.FamilyMember;
-import org.openmrs.module.gaac.FamilyMemberType;
 import org.openmrs.module.gaac.Gaac;
 import org.openmrs.module.gaac.GaacMember;
 import org.openmrs.module.gaac.ReasonLeavingGaacType;
@@ -225,58 +224,9 @@ public class GaacServiceImpl extends BaseOpenmrsService implements GaacService {
 	}
 
 	// Sacur
-	@Override
-	public FamilyMemberType saveFamilyType(FamilyMemberType paramFamilyType) {
-		return this.dao.saveFamilyType(paramFamilyType);
-	}
 
-	@Override
-	public FamilyMemberType getFamilyTypeById(Integer familyId) throws APIException {
-		return this.dao.getFamilyType(familyId);
-	}
 
-	@Override
-	public FamilyMemberType getFamilyTypeByUUID(String uuid) throws APIException {
-		return this.dao.getFamilyTypeByUUID(uuid);
-	}
-
-	@Override
-	public FamilyMemberType getFamilyTypeByName(String name) throws APIException {
-		return this.dao.getFamilyType(name);
-	}
-
-	@Override
-	public List<FamilyMemberType> getAllFamilyType() throws APIException {
-		return this.dao.getAllFamilyTypes(Boolean.valueOf(false));
-	}
-
-	@Override
-	public List<FamilyMemberType> getAllFamilyType(Boolean includeRetired) throws APIException {
-		return this.dao.getAllFamilyTypes(includeRetired);
-	}
-
-	@Override
-	public FamilyMemberType retireFamilyType(FamilyMemberType familyType, String reason) throws APIException {
-		if (reason == null)
-			throw new IllegalArgumentException("the argument 'reason' is null");
-		familyType.setRetired(Boolean.valueOf(true));
-		familyType.setRetireReason(reason);
-		this.dao.saveFamilyType(familyType);
-		return familyType;
-	}
-
-	@Override
-	public FamilyMemberType unretireFamilyType(FamilyMemberType familyType) throws APIException {
-		familyType.setRetired(Boolean.valueOf(false));
-		this.dao.saveFamilyType(familyType);
-		return familyType;
-	}
-
-	@Override
-	public void purgeFamilyType(FamilyMemberType familyType) throws APIException {
-		this.dao.deleteFamilyType(familyType);
-
-	}
+	
 
 	@Override
 	public Family saveFamily(Family family) {
@@ -304,11 +254,6 @@ public class GaacServiceImpl extends BaseOpenmrsService implements GaacService {
 		return this.dao.getAllOfLocationFamily(location);
 	}
 
-	@Override
-	public List<FamilyMember> getAllOfFamilyType(FamilyMemberType paramFamilyType) throws APIException {
-
-		return this.dao.getAllOfFamilyType(paramFamilyType);
-	}
 
 	@Override
 	public List<Family> getAllFamily() throws APIException {
@@ -320,12 +265,6 @@ public class GaacServiceImpl extends BaseOpenmrsService implements GaacService {
 		return this.dao.getAllFamily(includedVoided);
 	}
 
-	@Override
-	public List<Family> getAllFamilyEnrolled(Date startDate, Date endDate, Location location,
-			FamilyMemberType familyType) throws APIException {
-
-		return this.dao.getAllFamilyEnrolled(startDate, endDate, location, familyType);
-	}
 
 	@Override
 	public Family retireFamily(Family family, String reason) throws APIException {

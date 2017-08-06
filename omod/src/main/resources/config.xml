@@ -7,7 +7,7 @@
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
 	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
-	<author>Eurico Jose - FGH</author>
+	<author>Eurico Jose, Damasceno Lopes, Abdul Sacur - FGH</author>
 	<description>
 		${project.parent.description}
 	</description>
@@ -101,7 +101,6 @@
 		ReasonLeavingGaacType.hbm.xml
 		Gaac.hbm.xml
 	    GaacMember.hbm.xml
-		FamilyMemberType.hbm.xml
 		Family.hbm.xml
 		FamilyMember.hbm.xml
 	</mappingFiles>
