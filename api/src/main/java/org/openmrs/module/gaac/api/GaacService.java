@@ -24,7 +24,6 @@ import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.gaac.AffinityType;
 import org.openmrs.module.gaac.Family;
 import org.openmrs.module.gaac.FamilyMember;
-import org.openmrs.module.gaac.FamilyMemberType;
 import org.openmrs.module.gaac.Gaac;
 import org.openmrs.module.gaac.GaacMember;
 import org.openmrs.module.gaac.ReasonLeavingGaacType;
@@ -49,18 +48,15 @@ public interface GaacService extends OpenmrsService {
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Affinity Types" })
-	public AffinityType getAffinityTypeById(Integer paramInteger)
-			throws APIException;
+	public AffinityType getAffinityTypeById(Integer paramInteger) throws APIException;
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Affinity Types" })
-	public AffinityType getAffinityTypeByUUID(String paramString)
-			throws APIException;
+	public AffinityType getAffinityTypeByUUID(String paramString) throws APIException;
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Affinity Types" })
-	public AffinityType getAffinityTypeByName(String paramString)
-			throws APIException;
+	public AffinityType getAffinityTypeByName(String paramString) throws APIException;
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Affinity Types" })
@@ -68,64 +64,50 @@ public interface GaacService extends OpenmrsService {
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Affinity Types" })
-	public List<AffinityType> getAllAffinityType(Boolean paramBoolean)
-			throws APIException;
+	public List<AffinityType> getAllAffinityType(Boolean paramBoolean) throws APIException;
 
 	@Authorized({ "Manage Affinity Types" })
-	public AffinityType retireAffinityType(AffinityType paramAffinityType,
+	public AffinityType retireAffinityType(AffinityType paramAffinityType, String paramString) throws APIException;
+
+	@Authorized({ "Manage Affinity Types" })
+	public AffinityType unretireAffinityType(AffinityType paramAffinityType) throws APIException;
+
+	@Authorized({ "Manage Affinity Types" })
+	public void purgeAffinityType(AffinityType paramAffinityType) throws APIException;
+
+	@Authorized({ "Manage Reason Leaving Gaac Types" })
+	public ReasonLeavingGaacType saveReasonLeavingGaacType(ReasonLeavingGaacType paramReasonLeavingGaacType);
+
+	@Transactional(readOnly = true)
+	@Authorized({ "View Reason Leaving Gaac Types" })
+	public ReasonLeavingGaacType getReasonLeavingGaacType(Integer paramInteger) throws APIException;
+
+	@Transactional(readOnly = true)
+	@Authorized({ "View Reason Leaving Gaac Types" })
+	public ReasonLeavingGaacType getReasonLeavingGaacTypeByUUID(String paramString) throws APIException;
+
+	@Transactional(readOnly = true)
+	@Authorized({ "View Reason Leaving Gaac Types" })
+	public ReasonLeavingGaacType getReasonLeavingGaacType(String paramString) throws APIException;
+
+	@Transactional(readOnly = true)
+	@Authorized({ "View Reason Leaving Gaac Types" })
+	public List<ReasonLeavingGaacType> getAllReasonLeavingGaacType() throws APIException;
+
+	@Transactional(readOnly = true)
+	@Authorized({ "View Reason Leaving Gaac Types" })
+	public List<ReasonLeavingGaacType> getAllReasonLeavingGaacType(Boolean paramBoolean) throws APIException;
+
+	@Authorized({ "Manage Reason Leaving Gaac Types" })
+	public ReasonLeavingGaacType retireReasonLeavingGaacType(ReasonLeavingGaacType paramReasonLeavingGaacType,
 			String paramString) throws APIException;
 
-	@Authorized({ "Manage Affinity Types" })
-	public AffinityType unretireAffinityType(AffinityType paramAffinityType)
-			throws APIException;
-
-	@Authorized({ "Manage Affinity Types" })
-	public void purgeAffinityType(AffinityType paramAffinityType)
+	@Authorized({ "Manage Reason Leaving Gaac Types" })
+	public ReasonLeavingGaacType unretireReasonLeavingGaacType(ReasonLeavingGaacType paramReasonLeavingGaacType)
 			throws APIException;
 
 	@Authorized({ "Manage Reason Leaving Gaac Types" })
-	public ReasonLeavingGaacType saveReasonLeavingGaacType(
-			ReasonLeavingGaacType paramReasonLeavingGaacType);
-
-	@Transactional(readOnly = true)
-	@Authorized({ "View Reason Leaving Gaac Types" })
-	public ReasonLeavingGaacType getReasonLeavingGaacType(Integer paramInteger)
-			throws APIException;
-
-	@Transactional(readOnly = true)
-	@Authorized({ "View Reason Leaving Gaac Types" })
-	public ReasonLeavingGaacType getReasonLeavingGaacTypeByUUID(
-			String paramString) throws APIException;
-
-	@Transactional(readOnly = true)
-	@Authorized({ "View Reason Leaving Gaac Types" })
-	public ReasonLeavingGaacType getReasonLeavingGaacType(String paramString)
-			throws APIException;
-
-	@Transactional(readOnly = true)
-	@Authorized({ "View Reason Leaving Gaac Types" })
-	public List<ReasonLeavingGaacType> getAllReasonLeavingGaacType()
-			throws APIException;
-
-	@Transactional(readOnly = true)
-	@Authorized({ "View Reason Leaving Gaac Types" })
-	public List<ReasonLeavingGaacType> getAllReasonLeavingGaacType(
-			Boolean paramBoolean) throws APIException;
-
-	@Authorized({ "Manage Reason Leaving Gaac Types" })
-	public ReasonLeavingGaacType retireReasonLeavingGaacType(
-			ReasonLeavingGaacType paramReasonLeavingGaacType, String paramString)
-			throws APIException;
-
-	@Authorized({ "Manage Reason Leaving Gaac Types" })
-	public ReasonLeavingGaacType unretireReasonLeavingGaacType(
-			ReasonLeavingGaacType paramReasonLeavingGaacType)
-			throws APIException;
-
-	@Authorized({ "Manage Reason Leaving Gaac Types" })
-	public void purgeReasonLeavingGaacType(
-			ReasonLeavingGaacType paramReasonLeavingGaacType)
-			throws APIException;
+	public void purgeReasonLeavingGaacType(ReasonLeavingGaacType paramReasonLeavingGaacType) throws APIException;
 
 	@Authorized({ "Manage Gaac" })
 	public Gaac saveGaac(Gaac paramGaac);
@@ -148,13 +130,11 @@ public interface GaacService extends OpenmrsService {
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Gaac" })
-	public List<Gaac> getAllOfLocation(Location paramLocation)
-			throws APIException;
+	public List<Gaac> getAllOfLocation(Location paramLocation) throws APIException;
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Gaac" })
-	public List<Gaac> getAllOfAffinity(AffinityType paramAffinityType)
-			throws APIException;
+	public List<Gaac> getAllOfAffinity(AffinityType paramAffinityType) throws APIException;
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Gaac" })
@@ -166,13 +146,11 @@ public interface GaacService extends OpenmrsService {
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Gaac" })
-	public List<Gaac> getAllGaacEnrolled(Date paramDate1, Date paramDate2,
-			Location paramLocation, AffinityType paramAffinityType)
-			throws APIException;
+	public List<Gaac> getAllGaacEnrolled(Date paramDate1, Date paramDate2, Location paramLocation,
+			AffinityType paramAffinityType) throws APIException;
 
 	@Authorized({ "Manage Gaac" })
-	public Gaac retireGaac(Gaac paramGaac, String paramString)
-			throws APIException;
+	public Gaac retireGaac(Gaac paramGaac, String paramString) throws APIException;
 
 	@Authorized({ "Manage Gaac" })
 	public Gaac unretireGaac(Gaac paramGaac) throws APIException;
@@ -189,145 +167,69 @@ public interface GaacService extends OpenmrsService {
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Gaac Member" })
-	public GaacMember getGaacMemberByMember(Patient paramPatient)
-			throws APIException;
+	public GaacMember getGaacMemberByMember(Patient paramPatient) throws APIException;
 
 	@Transactional(readOnly = true)
 	@Authorized({ "View Gaac" })
-	public List<GaacMember> getAllGaacMemberHistory(Patient paramPatient)
-			throws APIException;
-	
+	public List<GaacMember> getAllGaacMemberHistory(Patient paramPatient) throws APIException;
+
 	@Transactional(readOnly = true)
 	@Authorized({ "View Gaac" })
-	public List<Gaac> getGaacByIdentifierAndLocation(String identifier,Location paramLocation) throws APIException;
+	public List<Gaac> getGaacByIdentifierAndLocation(String identifier, Location paramLocation) throws APIException;
 
-
-	// Sacur
 	@Transactional(readOnly = true)
 	@Authorized({ "View Family" })
 	public Family getFamily(Integer paramInteger) throws APIException;
 
-	// Sacur
 	@Authorized({ "Manage Family" })
 	public Family saveFamily(Family paramFamily);
 
-	// Sacur
 	@Authorized({ "Manage Family" })
 	public void purgeFamily(Family paramFamily) throws APIException;
 
-	// Sacur
 	@Authorized({ "Manage Family" })
 	public Family unretireFamily(Family paramFamily) throws APIException;
 
-	// Sacur
-	@Transactional(readOnly = true)
-	@Authorized({ "View Family" })
-	public List<Family> getAllFamilyEnrolled(Date paramDate1, Date paramDate2, Location paramLocation,
-			FamilyMemberType paramFamilyType) throws APIException;
-
-	// Sacur
 	@Transactional(readOnly = true)
 	@Authorized({ "View Family" })
 	public List<Family> getAllFamily(Boolean paramBoolean) throws APIException;
 
-	// Sacur
 	@Transactional(readOnly = true)
 	@Authorized({ "View Family" })
 	public Family getFamilyByUUID(String paramString) throws APIException;
 
-	// Sacur
 	@Transactional(readOnly = true)
 	@Authorized({ "View Family" })
 	public List<Family> getAllOfLocationFamily(Location paramLocation) throws APIException;
 
-	// Sacur
 	@Transactional(readOnly = true)
 	@Authorized({ "View Family" })
 	public Family getFamilyByIdentifier(String paramString) throws APIException;
 
-	// Sacur
 	@Transactional(readOnly = true)
 	@Authorized({ "View Family" })
 	public List<FamilyMember> getAllFamilyMemberHistory(Patient paramPatient) throws APIException;
 
-	// Sacur
-	@Transactional(readOnly = true)
-	@Authorized({ "View Family" })
-	public List<FamilyMember> getAllOfFamilyType(FamilyMemberType paramFamilyType) throws APIException;
-
-	// Sacur
 	@Transactional(readOnly = true)
 	@Authorized({ "View Family " })
 	public Family getFamilyMember(Patient paramPatient) throws APIException;
 
-	// Sacur
 	@Authorized({ "Manage Family" })
 	public Family retireFamily(Family paramFamily, String paramString) throws APIException;
 
-	// Sacur
 	@Transactional(readOnly = true)
 	@Authorized({ "View Family" })
 	public List<Family> getAllFamily() throws APIException;
 
-	// Sacur
-	@Authorized({ "Manage Family Member Types" })
-	public void purgeFamilyType(FamilyMemberType paramFamilyMemberType) throws APIException;
-
-	// Sacur
-	@Transactional(readOnly = true)
-	@Authorized({ "View Family Member Types" })
-	public List<FamilyMemberType> getAllFamilyType() throws APIException;
-
-	// Sacur
-	@Transactional(readOnly = true)
-	@Authorized({ "View Family Member Types" })
-	public FamilyMemberType getFamilyTypeByName(String paramString) throws APIException;
-
-	// Sacur
-	@Transactional(readOnly = true)
-	@Authorized({ "View Family Member Types" })
-	public FamilyMemberType getFamilyTypeById(Integer paramInteger) throws APIException;
-
-	// Sacur
-	@Authorized({ "Manage Family Member Types" })
-	public FamilyMemberType saveFamilyType(FamilyMemberType paramFamilyMemberType);
-
-	// Sacur
-	@Transactional(readOnly = true)
-	@Authorized({ "View Family Member Types" })
-	public FamilyMemberType getFamilyTypeByUUID(String paramString) throws APIException;
-
-	// Sacur
-	@Transactional(readOnly = true)
-	@Authorized({ "View Family Member Types" })
-	public List<FamilyMemberType> getAllFamilyType(Boolean paramBoolean) throws APIException;
-
-	// Sacur
-	@Authorized({ "Manage Family Member Types" })
-	public FamilyMemberType retireFamilyType(FamilyMemberType paramFamilyMemberType, String paramString)
-			throws APIException;
-
-	// Sacur
-	@Authorized({ "Manage Family Member Types" })
-	public FamilyMemberType unretireFamilyType(FamilyMemberType paramFamilyMemberType) throws APIException;
-
-	// Sacur
 	@Transactional(readOnly = true)
 	@Authorized({ "View Family Member" })
 	public FamilyMember getFamilyMemberByMember(Patient paramPatient) throws APIException;
 
-	// Sacur
 	@Transactional(readOnly = true)
 	@Authorized({ "View Family Member" })
 	public FamilyMember getFamilyMember(Integer paramInteger) throws APIException;
 
-	// Sacur
 	@Authorized({ "Manage Family Member" })
 	public FamilyMember saveFamilyMember(FamilyMember paramFamilyMember);
 
-
-
-
 }
-
-
