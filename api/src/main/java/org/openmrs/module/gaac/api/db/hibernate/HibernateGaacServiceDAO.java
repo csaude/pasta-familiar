@@ -238,7 +238,7 @@ public class HibernateGaacServiceDAO implements GaacServiceDAO {
 		return (GaacMember) criteria.uniqueResult();
 	}
 	
-	//Damasceno
+	
 	public List<GaacMember> getAllGaacMemberHistory(Patient member) throws DAOException {
 		Criteria criteria = this.sessionFactory.getCurrentSession()
 				.createCriteria(GaacMember.class);
@@ -254,9 +254,6 @@ public class HibernateGaacServiceDAO implements GaacServiceDAO {
 		return criteria.list();
 	}
 
-	//Sacur
-
-	
 
 	@Override
 	public Family saveFamily(Family family) {

@@ -98,14 +98,9 @@ public interface GaacServiceDAO {
 	public GaacMember getGaacMemberByMember(Patient paramPatient)
 			throws DAOException;
 	
-	//Damasceno
 	public List<GaacMember> getAllGaacMemberHistory(Patient paramPatient) throws DAOException;
+	
 	public List<Gaac> getGaacByIdentifierAndLocation(String paramString,Location paramLocation) throws DAOException;
-	
-	
-	//Sacur Pasta Familiar
-
-	
 	
 	public Family saveFamily(Family paramFamily);
 
@@ -120,8 +115,7 @@ public interface GaacServiceDAO {
 	public List<Family> getAllOfLocationFamily(Location paramLocation) throws DAOException;
 
 	public List<Family> getAllFamily(Boolean paramBoolean) throws DAOException;
-
-
+	
 	public void deleteFamily(Family paramFamily) throws DAOException;
 
 	public FamilyMember saveFamilyMember(FamilyMember paramFamilyMember);

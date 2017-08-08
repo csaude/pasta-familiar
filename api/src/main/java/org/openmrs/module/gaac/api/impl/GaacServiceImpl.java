@@ -214,7 +214,7 @@ public class GaacServiceImpl extends BaseOpenmrsService implements GaacService {
 		return this.dao.getGaacMemberByMember(member);
 	}
 
-	// Damasceno
+	
 	public List<GaacMember> getAllGaacMemberHistory(Patient member) throws APIException {
 		return this.dao.getAllGaacMemberHistory(member);
 	}
@@ -223,11 +223,7 @@ public class GaacServiceImpl extends BaseOpenmrsService implements GaacService {
 		return this.dao.getGaacByIdentifierAndLocation(identifier, paramLocation);
 	}
 
-	// Sacur
-
-
 	
-
 	@Override
 	public Family saveFamily(Family family) {
 		return this.dao.saveFamily(family);

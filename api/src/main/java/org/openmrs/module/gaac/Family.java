@@ -29,6 +29,7 @@ public class Family extends BaseOpenmrsData implements Serializable{
 	//Nosso objecto transiente
 	private Location newLocation;
 	
+	
 	@Override
 	public Integer getId() {
 		
