@@ -28,7 +28,6 @@ import org.openmrs.api.db.DAOException;
 import org.openmrs.module.gaac.AffinityType;
 import org.openmrs.module.gaac.Family;
 import org.openmrs.module.gaac.FamilyMember;
-import org.openmrs.module.gaac.FamilyMemberType;
 import org.openmrs.module.gaac.Gaac;
 import org.openmrs.module.gaac.GaacMember;
 import org.openmrs.module.gaac.ReasonLeavingGaacType;
@@ -239,7 +238,7 @@ public class HibernateGaacServiceDAO implements GaacServiceDAO {
 		return (GaacMember) criteria.uniqueResult();
 	}
 	
-	//Damasceno
+	
 	public List<GaacMember> getAllGaacMemberHistory(Patient member) throws DAOException {
 		Criteria criteria = this.sessionFactory.getCurrentSession()
 				.createCriteria(GaacMember.class);
@@ -255,52 +254,6 @@ public class HibernateGaacServiceDAO implements GaacServiceDAO {
 		return criteria.list();
 	}
 
-	//Sacur
-
-	@Override
-	public FamilyMemberType saveFamilyType(FamilyMemberType paramFamilyType) {
-		this.sessionFactory.getCurrentSession().saveOrUpdate(paramFamilyType);;
-		return paramFamilyType;
-	}
-
-	@Override
-	public void deleteFamilyType(FamilyMemberType paramFamilyType) throws DAOException {
-		this.sessionFactory.getCurrentSession().delete(paramFamilyType);
-		
-	}
-
-	@Override
-	public FamilyMemberType getFamilyType(Integer familyTypeMemberId) throws DAOException {
-		return (FamilyMemberType) this.sessionFactory.getCurrentSession().get(FamilyMemberType.class, familyTypeMemberId);
-		 
-	}
-
-	@Override
-	public FamilyMemberType getFamilyType(String name) throws DAOException {
-		Criteria c = this.sessionFactory.getCurrentSession().createCriteria(FamilyMemberType.class);
-		c.add(Expression.eq("retired", Boolean.valueOf(false)));
-		c.add(Expression.eq("name", name));
-		return (FamilyMemberType) c.uniqueResult();
-	}
-
-	@Override
-	public FamilyMemberType getFamilyTypeByUUID(String uuid) throws DAOException {
-		Criteria c = this.sessionFactory.getCurrentSession().createCriteria(
-				FamilyMemberType.class);
-		c.add(Expression.eq("retired", Boolean.valueOf(false)));
-		c.add(Expression.eq("uuid", uuid));
-		return (FamilyMemberType) c.uniqueResult();
-	}
-
-	@Override
-	public List<FamilyMemberType> getAllFamilyTypes(Boolean includeRetired) throws DAOException {
-		Criteria c = this.sessionFactory.getCurrentSession().createCriteria(
-				FamilyMemberType.class);
-		c.addOrder(Order.asc("name"));
-		if (!includeRetired.booleanValue())
-			c.add(Expression.eq("retired", Boolean.valueOf(false)));
-		return c.list();
-	}
 
 	@Override
 	public Family saveFamily(Family family) {
@@ -341,14 +294,7 @@ public class HibernateGaacServiceDAO implements GaacServiceDAO {
 		return criteria.list();
 	}
 
-	@Override
-	public List<FamilyMember> getAllOfFamilyType(FamilyMemberType familytype) throws DAOException {
-	
-			Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(Family.class);
-			criteria.add(Expression.eq("voided", Boolean.valueOf(false)));
-			criteria.add(Expression.eq("type", familytype));
-			return criteria.list();
-	}
+
 
 	@Override
 	public List<Family> getAllFamily(Boolean includeVoided) throws DAOException {
@@ -359,20 +305,6 @@ public class HibernateGaacServiceDAO implements GaacServiceDAO {
 		return criteria.list();
 	}
 
-	@Override
-	public List<Family> getAllFamilyEnrolled(Date startDate, Date endDate, Location location,
-			FamilyMemberType familytype) throws DAOException {
-		
-		Criteria criteria = this.sessionFactory.getCurrentSession()
-				.createCriteria(Family.class);
-		criteria.add(Expression.eq("voided", Boolean.valueOf(false)));
-
-		criteria.add(Expression.between("startDate", startDate, endDate));
-		
-		if (location != null)
-			criteria.add(Expression.eq("location", location));
-		return criteria.list();
-	}
 
 	@Override
 	public void deleteFamily(Family family) throws DAOException {

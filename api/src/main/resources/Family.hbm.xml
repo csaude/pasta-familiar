@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.openmrs.module.gaac" >
+
+	<class name="org.openmrs.module.gaac.Family" table="family" batch-size="25">
+
+		<id name="familyId" type="java.lang.Integer" column="family_id"
+			unsaved-value="0">
+			<generator class="native" />
+		</id>
+		
+		<discriminator column="family_id" insert="false" />
+		
+		<property name="familyIdentifier" type="java.lang.String"
+			column="family_identifier" length="38" unique="true" />
+			
+		<property name="startDate" type="java.util.Date"
+			column="start_date" length="19" />			
+		<!-- <property name="endDate" type="java.util.Date"	column="end_date" length="19" /> -->
+				
+		<property name="description" type="java.lang.String"
+			column="description" />			
+		<property name="uuid" type="java.lang.String"
+			column="uuid" length="38" unique="true" />				
+		<property name="crumbled" type="java.lang.Boolean"
+			column="crumbled" length="1"/>			
+		<property name="reasonCrumbled" type="java.lang.String"
+			column="reason_crumbled" length="255"/>	
+		<property name="dateCrumbled" type="java.util.Date"
+			column="date_crumbled" length="19" />	
+		
+		
+		<property name="dateCreated" type="java.util.Date"
+			column="date_created" not-null="true" length="19" />
+		<property name="voided" type="java.lang.Boolean" column="voided"
+			length="1" not-null="true" />
+		<property name="dateVoided" type="java.util.Date"
+			column="date_voided" length="19" />
+		<property name="voidReason" type="java.lang.String"
+			column="void_reason" length="255" />
+		<property name="dateChanged" type="java.util.Date" 
+			column="date_changed" not-null="false" length="19" />
+
+		<!-- Associations -->
+		<!-- bi-directional many-to-one association to User -->
+		<many-to-one name="changedBy" class="org.openmrs.User" not-null="false" column="changed_by"/>			
+
+		<!-- bi-directional many-to-one association to Patient -->
+		<many-to-one name="focalPatient" class="org.openmrs.Patient" not-null="false" column="focal_patient_id"/>
+					
+		
+		<!-- bi-directional one-to-many association to Obs -->
+		<set name="members" inverse="true" cascade="all" order-by="member_id" access="field">
+			<key column="family_id" />
+			<one-to-many class="org.openmrs.module.gaac.FamilyMember" />
+		</set>
+	
+		<!-- bi-directional many-to-one association to User -->
+		<many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator"/>
+			
+		
+		<many-to-one name="voidedBy" class="org.openmrs.User" column="voided_by"/>
+		
+		<many-to-one name="location" class="org.openmrs.Location" column="location_id"/>
+			
+
+	</class>
+</hibernate-mapping>

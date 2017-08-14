@@ -7,7 +7,7 @@
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
 	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
-	<author>Eurico Jose - FGH</author>
+	<author>Eurico Jose, Damasceno Lopes, Abdul Sacur - FGH</author>
 	<description>
 		${project.parent.description}
 	</description>
@@ -26,26 +26,29 @@
 		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
 	</extension>
 	
-	
 	<!-- Privileges -->
 	<privilege>
 		<name>Manage Affinity Types</name>
 		<description>Able to add/edit/retire affinity types</description>
 	</privilege>
+	
+	
 	<privilege>
 		<name>View Affinity Types</name>
 		<description>Able to view affinity types</description>
 	</privilege>
 
-	<privilege>
-		<name>Manage Reason Leaving Gaac Types</name>
-		<description>Able to add/edit/retire reason leaving gaac types
-		</description>
-	</privilege>
+
 
 	<privilege>
-		<name>View Reason Leaving Gaac Types</name>
-		<description>Able to view reason leaving gaac types</description>
+		<name>Manage Family Member Types</name>
+		<description>Able to add/edit/retire manage family member types</description>
+	</privilege>
+	
+	
+	<privilege>
+		<name>View Family Member Types</name>
+		<description>Able to add/edit/retire view family member types</description>
 	</privilege>
 
 	<privilege>
@@ -56,6 +59,17 @@
 	<privilege>
 		<name>View Gaac</name>
 		<description>Able to view gaac</description>
+	</privilege>
+
+
+	<privilege>
+		<name>Manage Family</name>
+		<description>Able to add/edit/retire family</description>
+	</privilege>
+
+	<privilege>
+		<name>View Family</name>
+		<description>Able to view family</description>
 	</privilege>
 
 	<privilege>
@@ -69,6 +83,16 @@
 	</privilege>
 	
 	
+	<privilege>
+		<name>Manage Family Member</name>
+		<description>Able to add/edit/retire family member</description>
+	</privilege>
+
+	<privilege>
+		<name>View Family Member</name>
+		<description>Able to view family member</description>
+	</privilege>
+	
 	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
@@ -76,8 +100,9 @@
 		AffinityType.hbm.xml
 		ReasonLeavingGaacType.hbm.xml
 		Gaac.hbm.xml
-		GaacMember.hbm.xml
-				
+	    GaacMember.hbm.xml
+		Family.hbm.xml
+		FamilyMember.hbm.xml
 	</mappingFiles>
 
 	<!-- Internationalization -->
@@ -101,4 +126,3 @@
 	<!-- /Internationalization -->
 
 </module>
-
