@@ -49,7 +49,7 @@ public class AdminList extends AdministrationSectionExt {
 				"gaac.affinityType.manage");
 		map.put("/module/gaac/reasonList.form", "gaac.reasonLeaving.manage");
 		map.put("/module/gaac/searchList.form", "gaac.search");
-
+		map.put("/module/gaac/familyList.form", "gaac.fmanage.title");
 		return map;
 	}
 
