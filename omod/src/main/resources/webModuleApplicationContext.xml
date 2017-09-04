@@ -32,4 +32,6 @@
 	<bean id="reasonLeavingvalidator" class="org.openmrs.module.gaac.validator.ReasonLeavingGaacTypeValidator" />
 	<bean id="gaacMemberValidator" class="org.openmrs.module.gaac.validator.GaacMemberValidator" />
 	<bean id="gaacValidator" class="org.openmrs.module.gaac.validator.GaacValidator" />	
+	<bean id="familyValidator"	class="org.openmrs.module.gaac.validator.FamilyValidator" />
+      <bean id="familyMemberValidator" class="org.openmrs.module.gaac.validator.FamilyMemberValidator" />
 </beans>

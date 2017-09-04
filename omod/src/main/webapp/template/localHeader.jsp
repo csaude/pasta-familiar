@@ -34,7 +34,12 @@
 		href="${pageContext.request.contextPath}/module/gaac/searchList.form"><spring:message
 				code="gaac.search" /></a>
 	</li>
-
+<li
+		<c:if test='<%= request.getRequestURI().contains("/familyList") %>'>class="active"</c:if>>
+		<a
+		href="${pageContext.request.contextPath}/module/gaac/familyList.form"><spring:message
+				code="gaac.fmmanage" /></a>
+</li>
 
 </ul>
 
