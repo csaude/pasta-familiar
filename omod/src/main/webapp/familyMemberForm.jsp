@@ -75,7 +75,6 @@
 	}
 	
 	function validateForm() {
-		return true;
 		var x = document.forms["myForm"]["members_not_voided"].value;
 		var y = document.forms["myForm"]["familyMemberId:int"].value;
 		if (x > 5&&(y==null||y=="")) {
@@ -93,7 +92,7 @@
 </script>
 
 <h2>
-	<openmrs:message code="gaac.member.title" />
+	<openmrs:message code="gaac.fmmember.title" />
 </h2>
 
 
@@ -113,7 +112,7 @@
 		</tr>
 		
 		<tr>
-			<td align="right"><openmrs:message code="gaac.manage.affinity" /></td>
+			<td align="right"><openmrs:message code="gaac.fmmember.type" /></td>
 			<td>
 					<select name="relacaotype">
 						<option value=""></option>

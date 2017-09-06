@@ -104,7 +104,7 @@ public class AddNewFamilyController {
 
 			// Desintegrar
 
-			if ((family.getCrumbled() != null) && (family.getCrumbled().booleanValue() == true)) {
+			if ((family.getCrumbled() != null) && (family.getCrumbled().booleanValue())) {
 
 				for (FamilyMember member : family.getMembers()) {
 					member.setLeaving(Boolean.valueOf(true));
@@ -117,7 +117,7 @@ public class AddNewFamilyController {
 
 			// Reintengrar
 
-			if (family.getCrumbled() != null && (family.getCrumbled().booleanValue() == false)) {
+			if (family.getCrumbled() != null && (!family.getCrumbled().booleanValue()) && family.getEndDate() !=null) {
 				family.setEndDate(null);
 				family.setReasonCrumbled(null);
 				family.setDateCrumbled(null);
@@ -133,7 +133,7 @@ public class AddNewFamilyController {
 			service.saveFamily(family);
 
 			HttpSession httpSession = request.getSession();
-			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "gaac.saved");
+			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "gaac.fmsaved");
 
 			return new ModelAndView(new RedirectView(request.getContextPath() + "/module/gaac/familyList.form"));
 

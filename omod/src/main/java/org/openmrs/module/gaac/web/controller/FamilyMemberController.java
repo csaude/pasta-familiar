@@ -174,7 +174,7 @@ public class FamilyMemberController {
 			service.saveFamilyMember(familyMember);
 
 			HttpSession httpSession = request.getSession();
-			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "gaac.member.saved");
+			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "gaac.fmmember.saved");
 
 			return new ModelAndView(new RedirectView(request.getContextPath()
 					+ "/module/gaac/addNewFamily.form?familyId=" + familyMember.getFamily().getFamilyId()));
