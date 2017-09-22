@@ -17,7 +17,6 @@ public class Family extends BaseOpenmrsData implements Serializable{
 	private String familyIdentifier;
 	private Date startDate;
 	private Date endDate;
-	private String description;
 	private Patient focalPatient;
 	private Set<FamilyMember> members;
 	private Location location;
@@ -74,13 +73,6 @@ public class Family extends BaseOpenmrsData implements Serializable{
 		this.endDate = endDate;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public Patient getFocalPatient() {
 		return focalPatient;

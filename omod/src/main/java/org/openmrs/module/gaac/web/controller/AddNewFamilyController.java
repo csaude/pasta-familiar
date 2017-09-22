@@ -1,7 +1,9 @@
 package org.openmrs.module.gaac.web.controller;
 
+import java.beans.PropertyEditorSupport;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,9 +11,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Relationship;
+import org.openmrs.RelationshipType;
+import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.gaac.Family;
 import org.openmrs.module.gaac.FamilyMember;
+import org.openmrs.module.gaac.Gaac;
+import org.openmrs.module.gaac.GaacMember;
 import org.openmrs.module.gaac.GaacUtils;
 import org.openmrs.module.gaac.api.GaacService;
 import org.openmrs.module.gaac.validator.FamilyValidator;
@@ -45,11 +51,34 @@ public class AddNewFamilyController {
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Date.class,
 				new CustomDateEditor(SimpleDateFormat.getDateInstance(3, Context.getLocale()), true));
+		
+		binder.registerCustomEditor(Relationship.class, new PropertyEditorSupport() {
+
+			public void setAsText(String text) throws IllegalArgumentException {
+				PersonService ps = Context.getPersonService();
+				Relationship rs = new Relationship();
+				rs.setRelationshipType(ps.getRelationshipType(Integer.parseInt(text)));
+				setValue(rs);
+
+			}
+
+			public String getAsText() {
+				RelationshipType t = (RelationshipType) getValue();
+
+				if (t == null) {
+					return "";
+				}
+
+				return t.getRelationshipTypeId().toString();
+			}
+
+		});
+
 	}
 
 	@RequestMapping(value = { "/module/gaac/addNewFamily" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET })
-	// showAffinityTypeForm
+	
 	public void showshowFamilyForm(Model model, @ModelAttribute("family") Family family) {
 	}
 
@@ -75,7 +104,7 @@ public class AddNewFamilyController {
 		ModelAndView model = new ModelAndView();
 
 		GaacService service = GaacUtils.getService();
-
+		PersonService ps = Context.getPersonService();
 		this.familyValidator.validate(family, result);
 
 		if (result.hasErrors()) {
@@ -83,8 +112,23 @@ public class AddNewFamilyController {
 			return model;
 		} else {
 
-			Relationship rs;
-
+			Relationship rs ;
+			
+			
+/* Comentando o codigo adicona o membro inicial como um membro da familia 
+			if ((family.getFamilyId() == null) && (family.getFocalPatient() != null)) {
+				FamilyMember member = new FamilyMember();
+				member.setFamily(family);
+				member.setStartDate(family.getStartDate());
+				member.setMember(family.getFocalPatient());
+				if (family.getMembers() == null)
+					family.setMembers(new HashSet<FamilyMember>());
+				family.getMembers().add(member);
+				
+				
+	}*/
+			
+			
 			// Anular
 			if ((family.getVoided() != null) && (family.getVoided().booleanValue())) {
 				for (FamilyMember member : family.getMembers()) {

@@ -2,6 +2,7 @@ package org.openmrs.module.gaac.web.controller;
 
 import java.beans.PropertyEditorSupport;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -87,7 +88,6 @@ public class FamilyMemberController {
 			@RequestParam(required = false, value = "familyId") Family family) {
 		GaacService gs = GaacUtils.getService();
 		PersonService ps = Context.getPersonService();
-
 		model.addAttribute("reasonLeavingTypes", gs.getAllReasonLeavingGaacType());
 
 		int voided = 0, not_voided = 0;
@@ -154,7 +154,6 @@ public class FamilyMemberController {
 
 				Relationship rs = familyMember.getRelacao();
 				rs.setRelationshipType(ps.getRelationshipType(Integer.valueOf(relacaoPessoa)));
-
 				ps.saveRelationship(rs);
 
 			}
@@ -188,7 +187,8 @@ public class FamilyMemberController {
 			FamilyMember member = GaacUtils.getService().getFamilyMember(familyMemberId);
 
 			int valorComparar = member.getRelacao().getRelationshipType().getRelationshipTypeId();
-
+			
+		
 			request.setAttribute("compara", valorComparar);
 
 			return member;

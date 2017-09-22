@@ -123,7 +123,7 @@
 
 
 		<tr>
-			<td align="right"><openmrs:message code="gaac.manage.focal" /></td>
+			<td align="right"><openmrs:message code="gaac.fmmanage.focal" /></td>
 			<td><spring:bind path="family.focalPatient">
 					<openmrs_tag:patientField formFieldName="focalPatient"
 						searchLabelCode="Patient.find" initialValue="${status.value}"
@@ -134,16 +134,6 @@
 				</spring:bind></td>
 		</tr>
 
-		<tr>
-			<td align="right" valign="top"><openmrs:message
-					code="general.description" /></td>
-			<td valign="top"><spring:bind path="family.description">
-					<textarea name="description" rows="3" cols="40">${status.value}</textarea>
-					<c:if test="${status.errorMessage != ''}">
-						<span class="error">${status.errorMessage}</span>
-					</c:if>
-				</spring:bind></td>
-		</tr>
 		<c:if test="${family.familyId != null}">
 			<tr>
 				<td align="right"><openmrs:message code="general.createdBy" /></td>
@@ -235,7 +225,7 @@
 <br />
 
 <c:if test="${family.familyId != null}">
-	<b class="boxHeader"><openmrs:message code="gaac.member.list" /></b>
+	<b class="boxHeader"><openmrs:message code="gaac.fmmember.list" /></b>
 	<form method="post" class="box" style="margin-bottom:15px;">
 
 		<table id="myTable" class="display" width="100%" cellpadding="2" cellspacing="0"
@@ -245,7 +235,7 @@
 				<th><openmrs:message code="Patient.identifier" /></th>
 				<th><openmrs:message code="general.name" /></th>
 				<th><openmrs:message code="gaac.fmmember.type" /></th>
-				<th><openmrs:message code="gaac.member.startDate" /></th>
+				<th><openmrs:message code="gaac.fmmember.startDate" /></th>
 				<th><openmrs:message code="gaac.member.endDate" /></th>
 				<th><openmrs:message code="gaac.member.reasonLeaving" /></th>
 
