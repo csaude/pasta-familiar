@@ -116,9 +116,9 @@ public class FamilyMemberController {
 		GaacService service = GaacUtils.getService();
 		PersonService ps = Context.getPersonService();
 		ModelAndView model = new ModelAndView();
-
 		if (familyMember.getFamily() == null) {
 			familyMember.setFamily(service.getFamily(Integer.valueOf(request.getParameter("familyId"))));
+			
 
 		}
 		this.familyMemberValidator.validate(familyMember, result);
@@ -135,39 +135,42 @@ public class FamilyMemberController {
 				log.debug("RESTART IS TRUE AND RESTART DATE IS" + familyMember.getRestartDate());
 			}
 
-			Person member = familyMember.getMember();
-			Person header = family.getFocalPatient();
-
-			Relationship newR = new Relationship();
-
-			newR.setRelationshipType(ps.getRelationshipType(Integer.valueOf(relacaoPessoa)));
-			newR.setPersonA(header);
-			newR.setPersonB(member);
-			newR.setDateCreated(new Date());
+			
 
 			if (familyMember.getFamilyMemberId() == null) {
+				Person member = familyMember.getMember();
+				Person header = family.getFocalPatient();
 
+				Relationship newR = new Relationship();
+
+				newR.setRelationshipType(ps.getRelationshipType(Integer.valueOf(relacaoPessoa)));
+				newR.setPersonA(header);
+				newR.setPersonB(member);
+				newR.setDateCreated(new Date());
 				ps.saveRelationship(newR);
 				familyMember.setRelacao(newR);
 
 			} else {
 
+				if(familyMember.getRelacao() != null){
 				Relationship rs = familyMember.getRelacao();
 				rs.setRelationshipType(ps.getRelationshipType(Integer.valueOf(relacaoPessoa)));
 				ps.saveRelationship(rs);
-
+				}
 			}
 
 			if (familyMember.getVoided()) {
 
+				
+				if(familyMember.getRelacao() != null){
+			
 				Relationship rs = familyMember.getRelacao();
-
 				rs.setVoided(true);
 				rs.setVoidedBy(familyMember.getVoidedBy());
 				rs.setVoidReason(familyMember.getVoidReason());
 				rs.setDateVoided(familyMember.getDateVoided());
-
-
+				
+				}
 			}
 
 			service.saveFamilyMember(familyMember);
@@ -186,10 +189,19 @@ public class FamilyMemberController {
 		if (familyMemberId != null) {
 			FamilyMember member = GaacUtils.getService().getFamilyMember(familyMemberId);
 
+		if( member.getRelacao() == null  && member.getId() ==null){
 			int valorComparar = member.getRelacao().getRelationshipType().getRelationshipTypeId();
-			
-		
 			request.setAttribute("compara", valorComparar);
+			
+		}
+		
+
+		if( member.getRelacao() != null  && member.getId() !=null){
+			int valorComparar = member.getRelacao().getRelationshipType().getRelationshipTypeId();
+			request.setAttribute("compara", valorComparar);
+			
+		}
+		
 
 			return member;
 		}

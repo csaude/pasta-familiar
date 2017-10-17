@@ -1,8 +1,8 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
-
+<!-- 
 <openmrs:require privilege="Manage Family Member" otherwise="/login.htm"
 	redirect="/module/gaac/familyMemberForm.form" />
-
+ -->
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 
@@ -110,7 +110,7 @@
 					</c:if>
 				</spring:bind></td>
 		</tr>
-		
+		<c:if test="${familyMember.relacao == null && familyMember.member ==null}"> 
 		<tr>
 			<td align="right"><openmrs:message code="gaac.fmmember.type" /></td>
 			<td>
@@ -123,6 +123,21 @@
 					</select>	
 			</td>
 		</tr>
+		</c:if>
+				<c:if test="${familyMember.relacao != null && familyMember.member !=null}"> 
+		<tr>
+			<td align="right"><openmrs:message code="gaac.fmmember.type" /></td>
+			<td>
+			<select name="relacaotype">
+						<option value=""></option>
+						<c:forEach items="${relacao}" var="type">
+							<option value="${type.relationshipTypeId}"
+								<c:if test="${type.relationshipTypeId == compara}">selected</c:if>>${type.bIsToA}</option> 
+						</c:forEach>
+					</select>	
+			</td>
+		</tr>
+		</c:if>
 		<tr>
 			<td align="right"><openmrs:message code="gaac.fmmanage.startDate" /></td>
 			<td><spring:bind path="familyMember.startDate">

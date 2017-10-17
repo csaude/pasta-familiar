@@ -28,5 +28,18 @@ public class GaacPrivilegeConstants extends PrivilegeConstants{
 
 	  @AddOnStartup(description="Able to view gaac member")
 	  public static final String VIEW_GAAC_MEMBER = "View Gaac Member";
+	  
+	  @AddOnStartup(description="Able to add/edit/retire family")
+	  public static final String MANAGE_FAMILY = "Manage Family";
+
+	  @AddOnStartup(description="Able to view family")
+	  public static final String VIEW_FAMILY = "View Family";
+	  
+	  
+	  @AddOnStartup(description="Able to add/edit/retire gaac member")
+	  public static final String MANAGE_FAMILY_MEMBER = "Manage Family Member";
+
+	  @AddOnStartup(description="Able to view gaac member")
+	  public static final String VIEW_FAMILY_MEMBER = "View Family Member";
 
 }
