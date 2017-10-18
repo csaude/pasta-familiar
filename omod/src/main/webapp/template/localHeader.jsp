@@ -34,12 +34,15 @@
 		href="${pageContext.request.contextPath}/module/gaac/searchList.form"><spring:message
 				code="gaac.search" /></a>
 	</li>
-<li
-		<c:if test='<%= request.getRequestURI().contains("/familyList") %>'>class="active"</c:if>>
-		<a
-		href="${pageContext.request.contextPath}/module/gaac/familyList.form"><spring:message
+
+
+	<li
+		<c:if test='<%= request.getRequestURI().contains("/familyList") %>'>class="active"</c:if>
+		<c:if test='<%= request.getRequestURI().contains("/addNewFamily") %>'>class="active"</c:if>
+		<c:if test='<%= request.getRequestURI().contains("/familyMemberForm") %>'>class="active"</c:if>>
+		<a href="${pageContext.request.contextPath}/module/gaac/familyList.form"><spring:message
 				code="gaac.fmmanage" /></a>
-</li>
+	</li>
 
 </ul>
 

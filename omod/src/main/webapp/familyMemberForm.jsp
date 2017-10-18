@@ -1,8 +1,8 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
-
+<!-- 
 <openmrs:require privilege="Manage Family Member" otherwise="/login.htm"
 	redirect="/module/gaac/familyMemberForm.form" />
-
+ -->
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 
@@ -75,7 +75,6 @@
 	}
 	
 	function validateForm() {
-		return true;
 		var x = document.forms["myForm"]["members_not_voided"].value;
 		var y = document.forms["myForm"]["familyMemberId:int"].value;
 		if (x > 5&&(y==null||y=="")) {
@@ -93,7 +92,7 @@
 </script>
 
 <h2>
-	<openmrs:message code="gaac.member.title" />
+	<openmrs:message code="gaac.fmmember.title" />
 </h2>
 
 
@@ -111,23 +110,36 @@
 					</c:if>
 				</spring:bind></td>
 		</tr>
-		
+		<c:if test="${familyMember.relacao == null && familyMember.member ==null}"> 
 		<tr>
-			<td align="right"><openmrs:message code="gaac.manage.affinity" /></td>
+			<td align="right"><openmrs:message code="gaac.fmmember.type" /></td>
 			<td>
-					<select name="relacaotype">
+			<select name="relacaotype">
 						<option value=""></option>
 						<c:forEach items="${relacao}" var="type">
 							<option value="${type.relationshipTypeId}"
 								<c:if test="${type.relationshipTypeId == compara}">selected</c:if>>${type.bIsToA}</option> 
-					
 						</c:forEach>
-					</select>
-					
+					</select>	
 			</td>
 		</tr>
+		</c:if>
+				<c:if test="${familyMember.relacao != null && familyMember.member !=null}"> 
 		<tr>
-			<td align="right"><openmrs:message code="gaac.manage.startDate" /></td>
+			<td align="right"><openmrs:message code="gaac.fmmember.type" /></td>
+			<td>
+			<select name="relacaotype">
+						<option value=""></option>
+						<c:forEach items="${relacao}" var="type">
+							<option value="${type.relationshipTypeId}"
+								<c:if test="${type.relationshipTypeId == compara}">selected</c:if>>${type.bIsToA}</option> 
+						</c:forEach>
+					</select>	
+			</td>
+		</tr>
+		</c:if>
+		<tr>
+			<td align="right"><openmrs:message code="gaac.fmmanage.startDate" /></td>
 			<td><spring:bind path="familyMember.startDate">
 					<input type="text" name="startDate" size="10"
 						value="${status.value}" onClick="showCalendar(this)"
@@ -137,15 +149,7 @@
 					</c:if>
 				</spring:bind></td>
 		</tr>
-		<tr>
-			<td align="right"><openmrs:message code="general.description" /></td>
-			<td valign="top"><spring:bind path="familyMember.description">
-					<textarea name="description" rows="2" cols="20">${status.value}</textarea>
-					<c:if test="${status.errorMessage != ''}">
-						<span class="error">${status.errorMessage}</span>
-					</c:if>
-				</spring:bind></td>
-		</tr>
+	
 		
 		<tr id="familyMembers">
 					<td colspan="2">

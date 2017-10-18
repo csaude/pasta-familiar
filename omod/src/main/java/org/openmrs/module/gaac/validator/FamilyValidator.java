@@ -54,12 +54,22 @@ public class FamilyValidator implements Validator {
 				
 				}
 
-				if (familyHeaderValidator != null || familyMemberValidator != null) {
+				if (familyHeaderValidator != null) {
 
-			String familyIdentifier = familyHeaderValidator.getFamilyIdentifier();
+		       	String familyIdentifier = familyHeaderValidator.getFamilyIdentifier();
 					
-			errors.rejectValue("focalPatient", "gaac.fmmember.error.infamily", new Object[] { familyIdentifier }," ");
+		     	errors.rejectValue("focalPatient", "gaac.fmmember.error.infamily", new Object[] { familyIdentifier }," ");
 				}
+				
+				if ( familyMemberValidator != null) {
+
+			       	String familyIdentifier = familyMemberValidator.getFamily().getFamilyIdentifier();
+						
+			     	errors.rejectValue("focalPatient", "gaac.fmmember.error.infamily", new Object[] { familyIdentifier }," ");
+					}
+				
+				
+				
 				
 				if(familyIdentifierValidator != null){
 					

@@ -40,16 +40,7 @@
 
 
 
-	<privilege>
-		<name>Manage Family Member Types</name>
-		<description>Able to add/edit/retire manage family member types</description>
-	</privilege>
-	
-	
-	<privilege>
-		<name>View Family Member Types</name>
-		<description>Able to add/edit/retire view family member types</description>
-	</privilege>
+
 
 	<privilege>
 		<name>Manage Gaac</name>
@@ -71,6 +62,8 @@
 		<name>View Family</name>
 		<description>Able to view family</description>
 	</privilege>
+	
+	 
 
 	<privilege>
 		<name>Manage Gaac Member</name>
@@ -93,7 +86,9 @@
 		<description>Able to view family member</description>
 	</privilege>
 	
-	
+	 
+	 
+	 
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 				

@@ -2,6 +2,7 @@ package org.openmrs.module.gaac.web.controller;
 
 import java.beans.PropertyEditorSupport;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -87,7 +88,6 @@ public class FamilyMemberController {
 			@RequestParam(required = false, value = "familyId") Family family) {
 		GaacService gs = GaacUtils.getService();
 		PersonService ps = Context.getPersonService();
-
 		model.addAttribute("reasonLeavingTypes", gs.getAllReasonLeavingGaacType());
 
 		int voided = 0, not_voided = 0;
@@ -116,9 +116,9 @@ public class FamilyMemberController {
 		GaacService service = GaacUtils.getService();
 		PersonService ps = Context.getPersonService();
 		ModelAndView model = new ModelAndView();
-
 		if (familyMember.getFamily() == null) {
 			familyMember.setFamily(service.getFamily(Integer.valueOf(request.getParameter("familyId"))));
+			
 
 		}
 		this.familyMemberValidator.validate(familyMember, result);
@@ -135,46 +135,48 @@ public class FamilyMemberController {
 				log.debug("RESTART IS TRUE AND RESTART DATE IS" + familyMember.getRestartDate());
 			}
 
-			Person member = familyMember.getMember();
-			Person header = family.getFocalPatient();
-
-			Relationship newR = new Relationship();
-
-			newR.setRelationshipType(ps.getRelationshipType(Integer.valueOf(relacaoPessoa)));
-			newR.setPersonA(header);
-			newR.setPersonB(member);
-			newR.setDateCreated(new Date());
+			
 
 			if (familyMember.getFamilyMemberId() == null) {
+				Person member = familyMember.getMember();
+				Person header = family.getFocalPatient();
 
+				Relationship newR = new Relationship();
+
+				newR.setRelationshipType(ps.getRelationshipType(Integer.valueOf(relacaoPessoa)));
+				newR.setPersonA(header);
+				newR.setPersonB(member);
+				newR.setDateCreated(new Date());
 				ps.saveRelationship(newR);
 				familyMember.setRelacao(newR);
 
 			} else {
 
+				if(familyMember.getRelacao() != null){
 				Relationship rs = familyMember.getRelacao();
 				rs.setRelationshipType(ps.getRelationshipType(Integer.valueOf(relacaoPessoa)));
-
 				ps.saveRelationship(rs);
-
+				}
 			}
 
 			if (familyMember.getVoided()) {
 
+				
+				if(familyMember.getRelacao() != null){
+			
 				Relationship rs = familyMember.getRelacao();
-
 				rs.setVoided(true);
 				rs.setVoidedBy(familyMember.getVoidedBy());
 				rs.setVoidReason(familyMember.getVoidReason());
 				rs.setDateVoided(familyMember.getDateVoided());
-
-
+				
+				}
 			}
 
 			service.saveFamilyMember(familyMember);
 
 			HttpSession httpSession = request.getSession();
-			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "gaac.member.saved");
+			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "gaac.fmmember.saved");
 
 			return new ModelAndView(new RedirectView(request.getContextPath()
 					+ "/module/gaac/addNewFamily.form?familyId=" + familyMember.getFamily().getFamilyId()));
@@ -187,9 +189,19 @@ public class FamilyMemberController {
 		if (familyMemberId != null) {
 			FamilyMember member = GaacUtils.getService().getFamilyMember(familyMemberId);
 
+		if( member.getRelacao() == null  && member.getId() ==null){
 			int valorComparar = member.getRelacao().getRelationshipType().getRelationshipTypeId();
-
 			request.setAttribute("compara", valorComparar);
+			
+		}
+		
+
+		if( member.getRelacao() != null  && member.getId() !=null){
+			int valorComparar = member.getRelacao().getRelationshipType().getRelationshipTypeId();
+			request.setAttribute("compara", valorComparar);
+			
+		}
+		
 
 			return member;
 		}

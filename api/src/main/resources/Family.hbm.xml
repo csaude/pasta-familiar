@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="org.openmrs.module.gaac" >
 
-	<class name="org.openmrs.module.gaac.Family" table="family" batch-size="25">
+	<class name="org.openmrs.module.gaac.Family" table="gaac_family" batch-size="25">
 
 		<id name="familyId" type="java.lang.Integer" column="family_id"
 			unsaved-value="0">
@@ -21,8 +21,7 @@
 			column="start_date" length="19" />			
 		<!-- <property name="endDate" type="java.util.Date"	column="end_date" length="19" /> -->
 				
-		<property name="description" type="java.lang.String"
-			column="description" />			
+	
 		<property name="uuid" type="java.lang.String"
 			column="uuid" length="38" unique="true" />				
 		<property name="crumbled" type="java.lang.Boolean"

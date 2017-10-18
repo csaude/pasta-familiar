@@ -14,7 +14,6 @@ public class FamilyMember extends BaseOpenmrsData {
 	private Date startDate;
 	private Date endDate;
 	private ReasonLeavingGaacType reasonLeaving;
-	private String description;
 	private Date restartDate;
 	private Boolean leaving;
 	private Boolean restart;
@@ -86,14 +85,6 @@ public class FamilyMember extends BaseOpenmrsData {
 
 	public void setReasonLeaving(ReasonLeavingGaacType reasonLeaving) {
 		this.reasonLeaving = reasonLeaving;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public Date getRestartDate() {

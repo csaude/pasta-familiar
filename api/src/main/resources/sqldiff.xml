@@ -20,7 +20,9 @@
 		<date>Jun 11 2012</date>
 		<description>Create Gaac tables for storing data of gaac module</description>
 		<sql>
-	DROP TABLE IF EXISTS gaac_affinity_type;
+	
+	
+		DROP TABLE IF EXISTS gaac_affinity_type;
 		
 		CREATE TABLE `gaac_affinity_type` (
   		`gaac_affinity_type_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -162,11 +164,10 @@
 	
 		
 	
-		DROP TABLE IF EXISTS family;
+		DROP TABLE IF EXISTS gaac_family;
 		
-		CREATE TABLE `family` (
+		CREATE TABLE `gaac_family` (
   		`family_id` int(11) NOT NULL AUTO_INCREMENT,
-  		`description` text,
   		`family_identifier` varchar(50) DEFAULT NULL,
   		`start_date` DATE NOT NULL DEFAULT '0000-00-00',
 		`end_date` DATE NULL DEFAULT '0000-00-00',
@@ -199,9 +200,9 @@
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 		
-		DROP TABLE IF EXISTS family_member;
+		DROP TABLE IF EXISTS gaac_family_member;
 		
-		CREATE TABLE `family_member` (
+		CREATE TABLE `gaac_family_member` (
   		`family_member_id` int(11) NOT NULL AUTO_INCREMENT,
   		`family_id` int(11) NOT NULL DEFAULT '0',
   		`member_id` int(11) NOT NULL DEFAULT '0',
@@ -209,7 +210,6 @@
   		`start_date` date NOT NULL DEFAULT '0000-00-00',
   		`end_date` date DEFAULT NULL,
   		`reason_leaving_type` int(11) DEFAULT NULL,
-  		`description` text,
   		`leaving` smallint(1) DEFAULT '0',
   		`restart` smallint(1) DEFAULT '0',
  		`restart_date` date DEFAULT NULL,
@@ -231,7 +231,7 @@
 		KEY `fk_family_member_relacao` (`family_member_relacao`),
   		KEY `fk_family_member_reason_leaving` (`reason_leaving_type`),
 		CONSTRAINT `fk_family_member_relacao` FOREIGN KEY (`family_member_relacao`) REFERENCES `relationship` (`relationship_id`),
-  		CONSTRAINT `fk_family_member_family` FOREIGN KEY (`family_id`) REFERENCES `family` (`family_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  		CONSTRAINT `fk_family_member_family` FOREIGN KEY (`family_id`) REFERENCES `gaac_family` (`family_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   		CONSTRAINT `fk_family_member_patient` FOREIGN KEY (`member_id`) REFERENCES `patient` (`patient_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   		CONSTRAINT `fk_family_member_reason_leaving` FOREIGN KEY (`reason_leaving_type`) REFERENCES `gaac_reason_leaving_type` (`gaac_reason_leaving_type_id`),
   		CONSTRAINT `fk_family_member_user_who_changed` FOREIGN KEY (`changed_by`) REFERENCES `users` (`user_id`),
