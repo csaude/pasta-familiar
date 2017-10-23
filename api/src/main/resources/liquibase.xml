@@ -14,8 +14,10 @@
 		<preConditions onFail="MARK_RAN">
 			<not>
 				<tableExists tableName="gaac_family" />
+				<tableExists tableName="gaac_family_member" />
 			</not>
 		</preConditions>
+
 
 		<comment>added gaac family table</comment>
 		<createTable tableName="gaac_family">
