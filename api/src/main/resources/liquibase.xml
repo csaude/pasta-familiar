@@ -6,7 +6,7 @@
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
 
 
-	<changeSet id="1.0.2" author="Maposse">
+	<changeSet id="1.0.1" author="Eusebio">
 
 		<validCheckSum>359b735227ecd08421f0524edc8020fe</validCheckSum> <!-- old checksum without specifying date_created -->
 		<validCheckSum>a4b610eb71e47ef228bb0e09e9c55384</validCheckSum> <!-- current checksum with date_created property added -->
@@ -15,8 +15,333 @@
 			<not>
 				<tableExists tableName="gaac_family" />
 				<tableExists tableName="gaac_family_member" />
+				<tableExists tableName="gaac_affinity_type" />
+				<tableExists tableName="gaac_reason_leaving_type" />
+				<tableExists tableName="gaac" />
+				<tableExists tableName="gaac_member" />
 			</not>
 		</preConditions>
+
+		<comment>added gaac affinity type table</comment>
+		<createTable tableName="gaac_affinity_type">
+
+			<column name="gaac_affinity_type_id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+
+			<column name="name" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="description" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="creator" type="int">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="date_created" type="datetime">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="retired" type="int(11)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="retired_by" type="int(11)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="date_retired" type="datetime">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="retire_reason" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="uuid" type="char(38)">
+			</column>
+		</createTable>
+
+
+		<addForeignKeyConstraint constraintName="user_creator_fk"
+			baseTableName="gaac_affinity_type" baseColumnNames="creator"
+			referencedTableName="users" referencedColumnNames="user_id" />
+
+		<addForeignKeyConstraint constraintName="user_retired_fk"
+			baseTableName="gaac_affinity_type" baseColumnNames="retired_by"
+			referencedTableName="users" referencedColumnNames="user_id" />
+
+
+
+		<comment>added gaac gaac reason leaving type table</comment>
+		<createTable tableName="gaac_reason_leaving_type">
+			<column name="gaac_reason_leaving_type_id" type="int(11)">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+
+			<column name="name" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="description" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="creator" type="int">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="date_created" type="datetime">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="retired" type="int(11)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="retired_by" type="int">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="date_retired" type="datetime">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="retire_reason" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="uuid" type="char(38)">
+			</column>
+		</createTable>
+
+
+		<addForeignKeyConstraint constraintName="user_leaving_type_created_fk"
+			baseTableName="gaac_reason_leaving_type" baseColumnNames="creator"
+			referencedTableName="users" referencedColumnNames="user_id" />
+
+		<addForeignKeyConstraint constraintName="user_leaving_type_retired_fk"
+			baseTableName="gaac_reason_leaving_type" baseColumnNames="retired_by"
+			referencedTableName="users" referencedColumnNames="user_id" />
+
+
+
+
+		<comment>added gaac table</comment>
+		<createTable tableName="gaac">
+
+			<column name="gaac_id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+
+			<column name="name" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="description" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="gaac_identifier" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="start_date" type="datetime">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="focal_patient_id" type="int(11)">
+			</column>
+
+			<column name="affinity_type" type="int">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="location_id" type="int">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="crumbled" type="int(11)">
+			</column>
+
+			<column name="reason_crumbled" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="date_crumbled" type="datetime">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="creator" type="int(11)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="date_created" type="datetime">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="changed_by" type="int(11)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="date_changed" type="datetime">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="voided" type="int(11)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="voided_by" type="int(11)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="date_voided" type="datetime">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="void_reason" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="uuid" type="char(38)">
+			</column>
+		</createTable>
+
+		<addForeignKeyConstraint constraintName="gaac_affinity_fk"
+			baseTableName="gaac" baseColumnNames="affinity_type"
+			referencedTableName="gaac_affinity_type" referencedColumnNames="gaac_affinity_type_id" />
+
+		<addForeignKeyConstraint constraintName="gaac_focal_patient_fk"
+			baseTableName="gaac" baseColumnNames="focal_patient_id"
+			referencedTableName="patient" referencedColumnNames="patient_id"
+			onDelete="SET NULL" onUpdate="CASCADE" />
+
+		<addForeignKeyConstraint constraintName="gaac_location_fk"
+			baseTableName="gaac" baseColumnNames="location_id"
+			referencedTableName="location" referencedColumnNames="location_id" />
+
+
+		<addForeignKeyConstraint constraintName="gaac_user_changed_by_fk"
+			baseTableName="gaac" baseColumnNames="changed_by"
+			referencedTableName="users" referencedColumnNames="user_id" />
+
+		<addForeignKeyConstraint constraintName="gaac_user_created_fk"
+			baseTableName="gaac" baseColumnNames="creator" referencedTableName="users"
+			referencedColumnNames="user_id" />
+
+		<addForeignKeyConstraint constraintName="gaac_user_voided_by_fk"
+			baseTableName="gaac" baseColumnNames="voided_by" referencedTableName="users"
+			referencedColumnNames="user_id" />
+
+
+		<comment>added gaac member table</comment>
+		<createTable tableName="gaac_member">
+
+			<column name="gaac_member_id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+
+			<column name="gaac_id" type="int(11)" defaultValueNumeric="0">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="member_id" type="int(11)" defaultValueNumeric="0">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="start_date" type="datetime">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="end_date" type="datetime">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="reason_leaving_type" type="int(11)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="description" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="leaving" type="smallint(1)" defaultValueNumeric="0">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="restart" type="smallint(1)" defaultValueNumeric="0">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="restart_date" type="datetime">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="creator" type="int(11)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="date_created" type="datetime">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="changed_by" type="int(11)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="date_changed" type="datetime">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="voided" type="smallint(6)" defaultValueNumeric="0">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="voided_by" type="int(11)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="date_voided" type="datetime">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="void_reason" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="uuid" type="char(38)">
+			</column>
+		</createTable>
+
+		<addForeignKeyConstraint constraintName="gaac_member_gaac_fk"
+			baseTableName="gaac_member" baseColumnNames="gaac_id"
+			referencedTableName="gaac" referencedColumnNames="gaac_id" onDelete="CASCADE"
+			onUpdate="CASCADE" />
+
+		<addForeignKeyConstraint constraintName="gaac_member_patient_fk"
+			baseTableName="gaac_member" baseColumnNames="member_id"
+			referencedTableName="patient" referencedColumnNames="patient_id"
+			onDelete="CASCADE" onUpdate="CASCADE" />
+
+		<addForeignKeyConstraint constraintName="gaac_member_reason_leaving_fk"
+			baseTableName="gaac_member" baseColumnNames="reason_leaving_type"
+			referencedTableName="gaac_reason_leaving_type" referencedColumnNames="gaac_reason_leaving_type_id" />
+
+		<addForeignKeyConstraint constraintName="gaac_member_user_changed_fk"
+			baseTableName="gaac_member" baseColumnNames="changed_by"
+			referencedTableName="users" referencedColumnNames="user_id" />
+
+		<addForeignKeyConstraint constraintName="gaac_member_user_created_fk"
+			baseTableName="gaac_member" baseColumnNames="creator"
+			referencedTableName="users" referencedColumnNames="user_id" />
+
+		<addForeignKeyConstraint constraintName="gaac_member_user_voided_fk"
+			baseTableName="gaac_member" baseColumnNames="voided_by"
+			referencedTableName="users" referencedColumnNames="user_id" />
 
 
 		<comment>added gaac family table</comment>
@@ -77,7 +402,6 @@
 
 			<column name="uuid" type="char(38)">
 			</column>
-
 		</createTable>
 
 
@@ -101,8 +425,9 @@
 			baseTableName="gaac_family" baseColumnNames="voided_by"
 			referencedTableName="users" referencedColumnNames="user_id" />
 
-		<comment>added gaac family member table</comment>
 
+
+		<comment>added gaac family member table</comment>
 		<createTable tableName="gaac_family_member">
 
 			<column name="family_member_id" type="int">
@@ -127,7 +452,7 @@
 			<column name="end_date" type="datetime">
 			</column>
 
-			<column name="reason_leaving_type" type="int">
+			<column name="reason_leaving_type" type="int(11)">
 			</column>
 
 			<column name="leaving" type="smallint(1)">
@@ -139,7 +464,7 @@
 			<column name="restart_date" type="date">
 			</column>
 
-			<column name="creator" type="int">
+			<column name="creator" type="int(11)">
 				<constraints nullable="false" />
 			</column>
 
@@ -147,7 +472,7 @@
 				<constraints nullable="false" />
 			</column>
 
-			<column name="changed_by" type="int">
+			<column name="changed_by" type="int(11)">
 			</column>
 
 			<column name="date_changed" type="datetime">
@@ -156,7 +481,7 @@
 			<column name="voided" type="smallint(6)">
 			</column>
 
-			<column name="voided_by" type="int">
+			<column name="voided_by" type="int(11)">
 			</column>
 
 			<column name="date_voided" type="datetime">
@@ -178,9 +503,11 @@
 			baseTableName="gaac_family_member" baseColumnNames="family_member_relacao"
 			referencedTableName="relationship" referencedColumnNames="relationship_id" />
 
-		<addForeignKeyConstraint constraintName="fm_reason_leaving_type_fk"
-			baseTableName="gaac_family_member" baseColumnNames="reason_leaving_type"
-			referencedTableName="gaac_reason_leaving_type" referencedColumnNames="gaac_reason_leaving_type_id" />
+
+		<!-- <addForeignKeyConstraint constraintName="fm_reason_leaving_type_fk" -->
+		<!-- baseTableName="gaac_family_member" baseColumnNames="reason_leaving_type" -->
+		<!-- referencedTableName="gaac_reason_leaving_type " -->
+		<!-- referencedColumnNames="gaac_reason_leaving_type_id" /> -->
 
 
 		<addForeignKeyConstraint constraintName="fm_creator_fk"
@@ -194,8 +521,6 @@
 		<addForeignKeyConstraint constraintName="fm_voided_fk"
 			baseTableName="gaac_family_member" baseColumnNames="voided_by"
 			referencedTableName="users" referencedColumnNames="user_id" />
-
-
 	</changeSet>
 
 </databaseChangeLog>
