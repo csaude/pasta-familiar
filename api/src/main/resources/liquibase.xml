@@ -128,8 +128,6 @@
 			referencedTableName="users" referencedColumnNames="user_id" />
 
 
-
-
 		<comment>added gaac table</comment>
 		<createTable tableName="gaac">
 
