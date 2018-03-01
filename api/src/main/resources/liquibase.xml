@@ -13,13 +13,13 @@
 
 		<preConditions onFail="MARK_RAN">
 			<not>
-				<tableExists tableName="gaac_family" />
-				<tableExists tableName="gaac_family_member" />
 				<tableExists tableName="gaac_affinity_type" />
 				<tableExists tableName="gaac_reason_leaving_type" />
 				<tableExists tableName="gaac" />
 				<tableExists tableName="gaac_member" />
 			</not>
+				<tableExists tableName="gaac_family" />
+				<tableExists tableName="gaac_family_member" />
 		</preConditions>
 
 		<comment>added gaac affinity type table</comment>
