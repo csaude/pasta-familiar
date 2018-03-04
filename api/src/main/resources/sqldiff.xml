@@ -15,16 +15,14 @@
 
  
 	<diff>
-		<version>1.2-SNAPSHOT</version>
+		<version>1.2</version>
 		<author>Eurico Jose, Damasceno Lopes, Abdul Sacur - FGH</author>
-		<date>Jun 11 2012</date>
+		<date>Mar 01 2018</date>
 		<description>Create Gaac tables for storing data of gaac module</description>
 		<sql>
 	
 	
-		DROP TABLE IF EXISTS gaac_affinity_type;
-		
-		CREATE TABLE `gaac_affinity_type` (
+		CREATE TABLE IF NOT EXISTS `gaac_affinity_type` (
   		`gaac_affinity_type_id` int(11) NOT NULL AUTO_INCREMENT,
   		`name` varchar(50) NOT NULL DEFAULT '',
   		`description` text,
@@ -44,9 +42,9 @@
   		CONSTRAINT `user_who_retired_gaac_affinity_type` FOREIGN KEY (`retired_by`) REFERENCES `users` (`user_id`)
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 		
-		DROP TABLE IF EXISTS gaac_reason_leaving_type;
 		
-		CREATE TABLE `gaac_reason_leaving_type` (
+		
+		CREATE TABLE IF NOT EXISTS `gaac_reason_leaving_type` (
   		`gaac_reason_leaving_type_id` int(11) NOT NULL AUTO_INCREMENT,
   		`name` varchar(50) NOT NULL DEFAULT '',
   		`description` text,
@@ -66,9 +64,9 @@
   		CONSTRAINT `user_who_retired_gaac_reason_leaving_type` FOREIGN KEY (`retired_by`) REFERENCES `users` (`user_id`)
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 		
-		DROP TABLE IF EXISTS gaac;
 		
-		CREATE TABLE `gaac` (
+		
+		CREATE TABLE IF NOT EXISTS `gaac` (
   		`gaac_id` int(11) NOT NULL AUTO_INCREMENT,
   		`name` varchar(50) NOT NULL DEFAULT '',
   		`description` text,
@@ -106,9 +104,9 @@
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 		
-		DROP TABLE IF EXISTS gaac_member;
+	
 		
-		CREATE TABLE `gaac_member` (
+		CREATE TABLE IF NOT EXISTS `gaac_member` (
   		`gaac_member_id` int(11) NOT NULL AUTO_INCREMENT,
   		`gaac_id` int(11) NOT NULL DEFAULT '0',
   		`member_id` int(11) NOT NULL DEFAULT '0',
@@ -145,28 +143,10 @@
 	
 	
 		
-		insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(1,'Amizade','Grupo de amigos',1,now(),'c995afca-d8c1-4b7b-8b0c-37947993df6f');
-		insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(2,'Familiar','Grupo de familias',1,now(),'d86ca8e9-1789-49cb-b7c1-dfdf7f21e1f7');
-		insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(3,'Igreja','Grupo de irmãos que frequentam a mesma igreja',1,now(),'507b327a-c873-4e7b-a464-a37347507de7');	
-		insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(4,'Mesquita','Grupo de irmãos muçulmanos que rezam na mesma mesquita',1,now(),'c7659bd5-27ec-4cd4-9f6e-1cb08e481c5f');
-		insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(5,'Residencia','Grupo de vizinhos',1,now(),'a7a18ce7-b0f5-4a49-b251-0aaea5bf5206');
-		insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(6,'Trabalho','Grupo de colegas de trabalho',1,now(),'f988c01d-274b-4a4b-b924-3bb3550b9f2a');
-		insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(7,'Outro','Outro tipo de grupo',1,now(),'82008fea-de96-47a5-a6f5-a22257075923');
-	
-	
-	
-		insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(1,'Transferido Para','Transferido para outra US',1,now(),'abfc3f72-c55c-4eb6-9004-25a6735a70b9');
-		insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(2,'Desistiu','Desistiram ou foram retirados do Gaac',1,now(),'d7df4950-c2ef-44f0-a8a6-8a328a21a19c');
-		insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(3,'Obitou','Obitou em Gaac',1,now(),'52c37b18-ad27-42ed-851d-dcf1d81471da');
-		insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(4,'Suspenso','Suspenso do Gaac',1,now(),'9dd52ebe-632d-49b2-8aa8-c3a5ca185ffe');
-		insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(5,'Desintegracao','Desintegração do grupo',1,now(),'0ed9d571-36eb-453b-a1f1-785f367f92f1');
-		
 	
 		
-	
-		DROP TABLE IF EXISTS gaac_family;
 		
-		CREATE TABLE `gaac_family` (
+		CREATE TABLE IF NOT EXISTS `gaac_family` (
   		`family_id` int(11) NOT NULL AUTO_INCREMENT,
   		`family_identifier` varchar(50) DEFAULT NULL,
   		`start_date` DATE NOT NULL DEFAULT '0000-00-00',
@@ -200,9 +180,8 @@
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 		
-		DROP TABLE IF EXISTS gaac_family_member;
 		
-		CREATE TABLE `gaac_family_member` (
+		CREATE TABLE IF NOT EXISTS `gaac_family_member` (
   		`family_member_id` int(11) NOT NULL AUTO_INCREMENT,
   		`family_id` int(11) NOT NULL DEFAULT '0',
   		`member_id` int(11) NOT NULL DEFAULT '0',
@@ -240,7 +219,33 @@
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 		
 		
+		INSERT IGNORE INTO gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(1,'Amizade','Grupo de amigos',1,now(),'c995afca-d8c1-4b7b-8b0c-37947993df6f');
+		INSERT IGNORE INTO gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(2,'Familiar','Grupo de familias',1,now(),'d86ca8e9-1789-49cb-b7c1-dfdf7f21e1f7');
+		INSERT IGNORE INTO gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(3,'Igreja','Grupo de irmãos que frequentam a mesma igreja',1,now(),'507b327a-c873-4e7b-a464-a37347507de7');	
+		INSERT IGNORE INTO gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(4,'Mesquita','Grupo de irmãos muçulmanos que rezam na mesma mesquita',1,now(),'c7659bd5-27ec-4cd4-9f6e-1cb08e481c5f');
+		INSERT IGNORE INTO gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(5,'Residencia','Grupo de vizinhos',1,now(),'a7a18ce7-b0f5-4a49-b251-0aaea5bf5206');
+		INSERT IGNORE INTO gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(6,'Trabalho','Grupo de colegas de trabalho',1,now(),'f988c01d-274b-4a4b-b924-3bb3550b9f2a');
+		INSERT IGNORE INTO gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(7,'Outro','Outro tipo de grupo',1,now(),'82008fea-de96-47a5-a6f5-a22257075923');
 	
+	
+	
+		INSERT IGNORE INTO gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(1,'Transferido Para','Transferido para outra US',1,now(),'abfc3f72-c55c-4eb6-9004-25a6735a70b9');
+		INSERT IGNORE INTO gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(2,'Desistiu','Desistiram ou foram retirados do Gaac',1,now(),'d7df4950-c2ef-44f0-a8a6-8a328a21a19c');
+		INSERT IGNORE INTO gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(3,'Obitou','Obitou em Gaac',1,now(),'52c37b18-ad27-42ed-851d-dcf1d81471da');
+		INSERT IGNORE INTO gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(4,'Suspenso','Suspenso do Gaac',1,now(),'9dd52ebe-632d-49b2-8aa8-c3a5ca185ffe');
+		INSERT IGNORE INTO gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(5,'Desintegracao','Desintegração do grupo',1,now(),'0ed9d571-36eb-453b-a1f1-785f367f92f1');
+		
+		INSERT IGNORE INTO `relationship_type` (`relationship_type_id`,`a_is_to_b`,`b_is_to_a`,`preferred`,`weight`,`description`,`creator`,`date_created`,`uuid`,`retired`,`retired_by`,`date_retired`,`retire_reason`) VALUES  (5,'Mãe','Filho/Filha',0,0,'Relacionamento entre mãe e filho',1,'2017-01-26 10:11:04','2b00dfef-a5dc-49e6-b406-762683938efa',0,NULL,NULL,NULL);
+INSERT IGNORE INTO `relationship_type` (`relationship_type_id`,`a_is_to_b`,`b_is_to_a`,`preferred`,`weight`,`description`,`creator`,`date_created`,`uuid`,`retired`,`retired_by`,`date_retired`,`retire_reason`) VALUES  (6,'Filha/Filho','Mae',0,0,'A para B',1,'2017-09-15 09:34:39','0fe8f7fa-f2bc-463e-b01f-ea5899621dff',0,NULL,NULL,NULL);
+INSERT IGNORE INTO `relationship_type` (`relationship_type_id`,`a_is_to_b`,`b_is_to_a`,`preferred`,`weight`,`description`,`creator`,`date_created`,`uuid`,`retired`,`retired_by`,`date_retired`,`retire_reason`) VALUES (7,'Irmão/Irmã','Irmão/Irmã',0,0,'A para B',1,'2017-09-21 14:23:03','333be161-e33d-4f79-bedd-1f6be7ce56f6',0,NULL,NULL,NULL);
+ INSERT IGNORE INTO `relationship_type` (`relationship_type_id`,`a_is_to_b`,`b_is_to_a`,`preferred`,`weight`,`description`,`creator`,`date_created`,`uuid`,`retired`,`retired_by`,`date_retired`,`retire_reason`) VALUES (8,'Sobrinho/Sobrinha','Tio/Tia',0,0,'A para B',1,'2017-09-21 14:23:40','0a938a11-a5ce-422f-ad92-ddee18a35e4e',0,NULL,NULL,NULL);
+INSERT IGNORE INTO `relationship_type` (`relationship_type_id`,`a_is_to_b`,`b_is_to_a`,`preferred`,`weight`,`description`,`creator`,`date_created`,`uuid`,`retired`,`retired_by`,`date_retired`,`retire_reason`) VALUES  (9,'Esposa/Esposo','Esposa/Esposo',0,0,'A para B',1,'2017-09-21 14:24:33','522b92f7-d2e2-4035-8683-4dfbc7bf95cb',0,NULL,NULL,NULL);
+ INSERT IGNORE INTO `relationship_type` (`relationship_type_id`,`a_is_to_b`,`b_is_to_a`,`preferred`,`weight`,`description`,`creator`,`date_created`,`uuid`,`retired`,`retired_by`,`date_retired`,`retire_reason`) VALUES (10,'Avó/Avô','Neto/Neta',0,0,'A para B',1,'2017-09-21 14:28:12','4132a84c-f116-4369-b67d-9363b3399916',0,NULL,NULL,NULL);
+ INSERT IGNORE INTO `relationship_type` (`relationship_type_id`,`a_is_to_b`,`b_is_to_a`,`preferred`,`weight`,`description`,`creator`,`date_created`,`uuid`,`retired`,`retired_by`,`date_retired`,`retire_reason`) VALUES (11,'Neto/Neta','Avó/Avô',0,0,'A para B',1,'2017-09-21 14:28:47','27219e8c-bb8a-42f7-a49b-81bb6171d877',0,NULL,NULL,NULL);
+INSERT  IGNORE INTO `relationship_type` (`relationship_type_id`,`a_is_to_b`,`b_is_to_a`,`preferred`,`weight`,`description`,`creator`,`date_created`,`uuid`,`retired`,`retired_by`,`date_retired`,`retire_reason`) VALUES (12,'Pai','Filho/Filha',0,0,'Relacionamento entre mãe e filho',1,'2017-01-26 10:11:04','2b00dfef-a5dc-49e6-b406-76268393000a',0,NULL,NULL,NULL);
+INSERT IGNORE INTO `relationship_type` (`relationship_type_id`,`a_is_to_b`,`b_is_to_a`,`preferred`,`weight`,`description`,`creator`,`date_created`,`uuid`,`retired`,`retired_by`,`date_retired`,`retire_reason`) VALUES  (13,'Filha/Filho','Pai',0,0,'A para B',1,'2017-09-15 09:34:39','0fe000fa-f2bc-463e-b01f-ea5899621dff',0,NULL,NULL,NULL);
+		
+		
 
 		</sql>
 	</diff>
