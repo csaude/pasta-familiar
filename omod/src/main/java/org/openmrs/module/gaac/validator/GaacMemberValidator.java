@@ -2,6 +2,7 @@ package org.openmrs.module.gaac.validator;
 
 import java.util.Date;
 
+import org.openmrs.module.gaac.FamilyMember;
 import org.openmrs.module.gaac.GaacMember;
 import org.openmrs.module.gaac.GaacUtils;
 import org.openmrs.module.gaac.api.GaacService;
@@ -27,10 +28,23 @@ public class GaacMemberValidator implements Validator {
 		}else{
 			if (member.getGaacMemberId() == null) {
 				GaacService gs = GaacUtils.getService();
-				GaacMember temp = gs.getGaacMemberByMember(member.getMember());
-				if (temp != null) {
-					errors.rejectValue("member", "gaac.member.error.ingaac");
+				FamilyMember familyMemberValidator = gs.getFamilyMemberByMember(member.getMember());
+				
+				GaacMember gaacMemberValidator = gs.getGaacMemberByMember(member.getMember());
+				if (gaacMemberValidator != null) {
+					
+					String gaacIdentifier = gaacMemberValidator.getGaac().getGaacIdentifier();
+					errors.rejectValue("member", "gaac.member.error.ingaac",  new Object[] { gaacIdentifier }," ");
 				}
+				
+				
+				if ( familyMemberValidator != null) {
+
+			       	String familyIdentifier = familyMemberValidator.getFamily().getFamilyIdentifier();
+						
+			     	errors.rejectValue("member", "gaac.fmmember.error.infamily", new Object[] { familyIdentifier }," ");
+					}
+			
 			}
 			
 			if(member.getMember().getAge()<15){

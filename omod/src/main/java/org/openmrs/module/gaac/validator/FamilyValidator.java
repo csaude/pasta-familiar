@@ -22,7 +22,7 @@ public class FamilyValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		Family family = (Family) target;
 		if (family == null) {
-			//Por trocar mensagens
+		
 			errors.rejectValue("family", "gaac.fm.error.general");
 		} else {
 		
