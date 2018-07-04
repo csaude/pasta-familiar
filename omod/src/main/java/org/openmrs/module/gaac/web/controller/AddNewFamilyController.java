@@ -115,7 +115,7 @@ public class AddNewFamilyController {
 			Relationship rs ;
 			
 			
-/* Comentando o codigo adicona o membro inicial como um membro da familia 
+			//Add initial member as family member
 			if ((family.getFamilyId() == null) && (family.getFocalPatient() != null)) {
 				FamilyMember member = new FamilyMember();
 				member.setFamily(family);
@@ -125,8 +125,8 @@ public class AddNewFamilyController {
 					family.setMembers(new HashSet<FamilyMember>());
 				family.getMembers().add(member);
 				
-				
-	}*/
+			}
+	
 			
 			
 			// Anular
@@ -137,11 +137,13 @@ public class AddNewFamilyController {
 					member.setVoidReason(family.getVoidReason());
 					member.setDateVoided(family.getDateVoided());
 
+					if(member.getRelacao()!=null){
 					rs = member.getRelacao();
 					rs.setVoided(true);
 					rs.setVoidedBy(family.getVoidedBy());
 					rs.setVoidReason(family.getVoidReason());
 					rs.setDateVoided(family.getDateVoided());
+					}
 
 				}
 			}

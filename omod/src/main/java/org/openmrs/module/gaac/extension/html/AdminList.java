@@ -50,6 +50,7 @@ public class AdminList extends AdministrationSectionExt {
 		map.put("/module/gaac/reasonList.form", "gaac.reasonLeaving.manage");
 		map.put("/module/gaac/searchList.form", "gaac.search");
 		map.put("/module/gaac/familyList.form", "gaac.fmanage.title");
+		map.put("/module/gaac/searchFamilyList.form", "gaac.fmsearch");
 		return map;
 	}
 

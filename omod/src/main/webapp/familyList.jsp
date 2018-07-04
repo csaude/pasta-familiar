@@ -1,7 +1,9 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
-
+<!-- 
 <openmrs:require privilege="View Family" otherwise="/login.htm"
 	redirect="/module/gaac/familyList.form" />
+	
+	 -->
 <openmrs:message var="pageTitle" code="gaac.manage.titlebar"
 	scope="page" />
 

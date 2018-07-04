@@ -178,58 +178,44 @@ public interface GaacService extends OpenmrsService {
 	public List<Gaac> getGaacByIdentifierAndLocation(String identifier, Location paramLocation) throws APIException;
 
 	@Transactional(readOnly = true)
-	@Authorized({ "View Family" })
 	public Family getFamily(Integer paramInteger) throws APIException;
 
-	@Authorized({ "Manage Family" })
 	public Family saveFamily(Family paramFamily);
 
-	@Authorized({ "Manage Family" })
 	public void purgeFamily(Family paramFamily) throws APIException;
 
-	@Authorized({ "Manage Family" })
 	public Family unretireFamily(Family paramFamily) throws APIException;
 
 	@Transactional(readOnly = true)
-	@Authorized({ "View Family" })
 	public List<Family> getAllFamily(Boolean paramBoolean) throws APIException;
 
 	@Transactional(readOnly = true)
-	@Authorized({ "View Family" })
 	public Family getFamilyByUUID(String paramString) throws APIException;
 
 	@Transactional(readOnly = true)
-	@Authorized({ "View Family" })
 	public List<Family> getAllOfLocationFamily(Location paramLocation) throws APIException;
 
 	@Transactional(readOnly = true)
-	@Authorized({ "View Family" })
 	public Family getFamilyByIdentifier(String paramString) throws APIException;
 
 	@Transactional(readOnly = true)
-	@Authorized({ "View Family" })
 	public List<FamilyMember> getAllFamilyMemberHistory(Patient paramPatient) throws APIException;
 
 	@Transactional(readOnly = true)
-	@Authorized({ "View Family " })
 	public Family getFamilyMember(Patient paramPatient) throws APIException;
 
-	@Authorized({ "Manage Family" })
+	
 	public Family retireFamily(Family paramFamily, String paramString) throws APIException;
 
 	@Transactional(readOnly = true)
-	@Authorized({ "View Family" })
 	public List<Family> getAllFamily() throws APIException;
 
 	@Transactional(readOnly = true)
-	@Authorized({ "View Family Member" })
 	public FamilyMember getFamilyMemberByMember(Patient paramPatient) throws APIException;
 
 	@Transactional(readOnly = true)
-	@Authorized({ "View Family Member" })
 	public FamilyMember getFamilyMember(Integer paramInteger) throws APIException;
 
-	@Authorized({ "Manage Family Member" })
 	public FamilyMember saveFamilyMember(FamilyMember paramFamilyMember);
 
 }

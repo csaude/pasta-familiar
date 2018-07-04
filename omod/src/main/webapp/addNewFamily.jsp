@@ -1,8 +1,9 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 
+<!-- 
 <openmrs:require privilege="Manage Family" otherwise="/login.htm"
 	redirect="/module/gaac/addNewFamily.form" />
-
+ -->
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 
