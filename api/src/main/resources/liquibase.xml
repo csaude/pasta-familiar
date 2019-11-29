@@ -526,8 +526,8 @@
 		</changeSet>
 
 		<changeSet author="HIS_00" id="delete" >
-			<delete schemaName="openmrs" tableName="gaac_affinity_type"></delete>
-			<delete schemaName="openmrs" tableName="gaac_reason_leaving_type"></delete>
+			<delete tableName="gaac_affinity_type"></delete>
+			<delete tableName="gaac_reason_leaving_type"></delete>
 		</changeSet>
 
 	<changeSet author="HIS_02" id="1.0">
