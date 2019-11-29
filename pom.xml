@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>gaac</artifactId>
-	<version>1.2 -SNAPSHOT</version>
+	<version>1.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Modulo Gaac Module</name>
 	<description>Modulo para lidar com o Grupo de Apoio de Adesao Comunitaria - Mozambique</description>
