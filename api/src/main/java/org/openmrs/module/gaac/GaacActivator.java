@@ -16,18 +16,20 @@ package org.openmrs.module.gaac;
 
 import org.apache.commons.logging.Log; 
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.ModuleActivator;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
  */
-public class GaacActivator implements ModuleActivator {
+public class GaacActivator extends BaseModuleActivator {
 	
 	protected Log log = LogFactory.getLog(getClass());
 		
 	/**
 	 * @see ModuleActivator#willRefreshContext()
 	 */
+	@Override
 	public void willRefreshContext() {
 		log.info("Refreshing Modulo Gaac");
 	}
@@ -35,6 +37,7 @@ public class GaacActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator#contextRefreshed()
 	 */
+	@Override
 	public void contextRefreshed() {
 		log.info("Modulo Gaac refreshed");
 	}
@@ -42,6 +45,7 @@ public class GaacActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator#willStart()
 	 */
+	@Override
 	public void willStart() {
 		log.info("Starting Gaac Module");
 	}
@@ -49,6 +53,7 @@ public class GaacActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator#started()
 	 */
+	@Override
 	public void started() {
 		log.info("Modulo Gaac Module started");
 	}
@@ -56,6 +61,7 @@ public class GaacActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator#willStop()
 	 */
+	@Override
 	public void willStop() {
 		log.info("Stopping Modulo Gaac Module");
 	}
@@ -63,6 +69,7 @@ public class GaacActivator implements ModuleActivator {
 	/**
 	 * @see ModuleActivator#stopped()
 	 */
+	@Override
 	public void stopped() {
 		log.info("Modulo Gaac Module stopped");
 	}
