@@ -1,9 +1,11 @@
 package org.openmrs.module.gaac.util;
 
 import org.openmrs.annotation.AddOnStartup;
+import org.openmrs.annotation.HasAddOnStartupPrivileges;
 import org.openmrs.util.PrivilegeConstants;
 
-public class GaacPrivilegeConstants extends PrivilegeConstants{
+@HasAddOnStartupPrivileges
+public class GaacPrivilegeConstants {
 	
 	@AddOnStartup(description="Able to add/edit/retire affinity types")
 	  public static final String MANAGE_AFFINITY_TYPES = "Manage Affinity Types";
