@@ -549,5 +549,81 @@
 		
 		</sql>
 	</changeSet>
+	
+	
+	<changeSet author="jpboane" id="20210208_1318">
+		<comment>Ajust Gaac module gaac_family table</comment>
+		
+		<sql splitStatements="true" stripComments="true" >
+			update gaac_family set family_identifier = 'UNDIFINED' where family_identifier is null;
+			alter table gaac_family change family_identifier family_identifier varchar(50) NOT NULL;
+			update gaac_family set end_date = null where end_date = '0000-00-00';
+			alter table gaac_family change end_date end_date date NULL DEFAULT NULL;
+			update gaac_family set focal_patient_id = (select min(patient_id) 
+													   from patient inner join gaac_family_member on patient.patient_id = gaac_family_member.member_id
+													   where gaac_family.family_id = gaac_family_member.family_id)
+			where focal_patient_id is null;
+			alter table gaac_family DROP FOREIGN KEY fk_family_focal_patient;
+			alter table gaac_family change focal_patient_id focal_patient_id int(11) NOT NULL; 
+			alter table gaac_family add constraint `fk_family_focal_patient` FOREIGN KEY (`focal_patient_id`) REFERENCES `patient` (`patient_id`);
+			update gaac_family  set location_id = 31 where location_id  is null;
+			alter table gaac_family  change location_id location_id int(11) NOT NULL;
+			update gaac_family  set location_id = 31 where location_id  is null;
+			update gaac_family set crumbled = 0 where crumbled  is null;
+			alter table gaac_family change crumbled crumbled smallint(2) NOT NULL DEFAULT 0;
+			alter table gaac_family change uuid uuid char(38) NOT NULL;
+		</sql>
+	</changeSet>
 
+	
+	<changeSet author="jpboane" id="20210208_1458">
+		<comment>Ajust Gaac module gaac table</comment>
+		
+		<sql splitStatements="true" stripComments="true" >
+			update gaac set affinity_type = 7 where affinity_type is null;
+			alter table gaac change affinity_type affinity_type int(11) NOT NULL;
+			update gaac  set location_id = 31 where location_id  is null;
+			alter table gaac  change location_id location_id int(11) NOT NULL;
+			alter table gaac change date_crumbled date_crumbled date NULL DEFAULT NULL;
+			alter table gaac change date_changed date_changed date NULL DEFAULT NULL;
+			alter table gaac change voided voided smallint(6) NOT NULL DEFAULT '0';
+			alter table gaac change date_changed date_changed date NULL DEFAULT NULL;
+			alter table gaac change uuid uuid char(38) NOT NULL;
+		</sql>
+	</changeSet>
+	
+	<changeSet author="jpboane" id="20210208_1459">
+		<comment>Ajust Gaac module gaac_member table</comment>
+		
+		<sql splitStatements="true" stripComments="true" >
+			alter table gaac_member change date_changed date_changed date NULL DEFAULT NULL;
+			alter table gaac_member change voided voided smallint(6) NOT NULL DEFAULT '0';
+			alter table gaac_member change uuid uuid char(38) NOT NULL;
+		</sql>
+	</changeSet>
+	
+		<changeSet author="jpboane" id="20210208_1501">
+		<comment>Ajust Gaac module gaac_family_member table</comment>
+		
+		<sql splitStatements="true" stripComments="true" >
+			alter table gaac_member change date_changed date_changed date NULL DEFAULT NULL;
+			alter table gaac_member change voided voided smallint(6) NOT NULL DEFAULT '0';
+			alter table gaac_member change uuid uuid char(38) NOT NULL;
+		</sql>
+	</changeSet>
+	
+	<changeSet author="jpboane" id="20210208_1536">
+		<comment>Ajust focal_patient_id on gaac</comment>
+		
+		<sql splitStatements="true" stripComments="true" >
+			update gaac set focal_patient_id = (select min(patient_id) 
+											    from patient inner join gaac_member on patient.patient_id = gaac_member.member_id
+											    where gaac.gaac_id = gaac_member.member_id)
+			where focal_patient_id is null;
+			alter table gaac DROP FOREIGN KEY fk_gaac_focal_patient;
+			alter table gaac change focal_patient_id focal_patient_id int(11) NOT NULL; 
+			alter table gaac add constraint `fk_gaac_focal_patient` FOREIGN KEY (`focal_patient_id`) REFERENCES `patient` (`patient_id`);
+		</sql>
+	</changeSet>
+	
 </databaseChangeLog>
