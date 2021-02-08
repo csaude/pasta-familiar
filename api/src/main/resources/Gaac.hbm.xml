@@ -49,7 +49,7 @@
 		<many-to-one name="changedBy" class="org.openmrs.User" not-null="false" column="changed_by"/>			
 
 		<!-- bi-directional many-to-one association to Patient -->
-		<many-to-one name="focalPatient" class="org.openmrs.Patient" not-null="false" column="focal_patient_id"/>
+		<many-to-one name="focalPatient" class="org.openmrs.Patient" not-null="true" column="focal_patient_id"/>
 					
 		
 		<!-- bi-directional one-to-many association to Obs -->
@@ -59,7 +59,7 @@
 		</set>
 		<!-- bi-directional many-to-one association to EncounterType -->
 		<many-to-one name="affinity" class="org.openmrs.module.gaac.AffinityType"
-			not-null="false" column="affinity_type"/>
+			not-null="true" column="affinity_type"/>
 			
 		<!-- bi-directional many-to-one association to User -->
 		<many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator"/>
