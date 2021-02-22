@@ -221,7 +221,7 @@
 		
 		<createTable tableName="gaac">
 
-			<column name="gaac_id" type="int">
+			<column name="gaac_id" type="int" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
@@ -363,7 +363,7 @@
 		
 		<createTable tableName="gaac_member">
 
-			<column name="gaac_member_id" type="int(11)">
+			<column name="gaac_member_id" type="int(11)" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
@@ -511,7 +511,7 @@
 		
 		<createTable tableName="gaac_family">
 
-			<column name="family_id" type="int(11)">
+			<column name="family_id" type="int(11)" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
@@ -631,7 +631,7 @@
 		
 		<createTable tableName="gaac_family_member">
 
-			<column name="family_member_id" type="int(11)">
+			<column name="family_member_id" type="int(11)" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
