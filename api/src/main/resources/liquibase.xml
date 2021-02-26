@@ -5,21 +5,432 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
                   
-
-	<changeSet id="20210222_1150" author="jpboane">
+	<changeSet  author="jpboane"  id="20210226_0001">  
 		<preConditions onFail="MARK_RAN">
 			<tableExists tableName="gaac_affinity_type" />
 		</preConditions>
 		
 		<comment>Ajust Gaac Module gaac_affinity_type Table</comment>
-		
-		<sql splitStatements="true" stripComments="true" >
-			alter table gaac_affinity_type  change creator creator int(11) NOT NULL;
-		</sql>
-		
+	
+	    <dropDefaultValue 
+	        columnName="creator"  
+	        tableName="gaac_affinity_type"/>  
 	</changeSet>
 	
-	<changeSet id="20210222_1005" author="jpboane">
+	<changeSet  author="jpboane"  id="20210226_0002">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_reason_leaving_type" />
+		</preConditions>
+		
+		<comment>Ajust Gaac Module gaac_reason_leaving_type Table</comment>
+	
+	    <dropDefaultValue 
+	        columnName="creator"  
+	        tableName="gaac_reason_leaving_type"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0003">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="end_date"  
+	        tableName="gaac"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0004">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="focal_patient_id"  
+	        tableName="gaac"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0005">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	    	columnName="affinity_type"  
+	        tableName="gaac"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0006">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="creator"  
+	        tableName="gaac"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0007">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="changed_by"  
+	        tableName="gaac"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0008">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="date_changed"  
+	        tableName="gaac"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0009">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="date_crumbled"  
+	        tableName="gaac"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0010">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+		<comment>Set location to default location where location is null on Gaac Table</comment>
+		
+	    <update tableName="gaac">
+	        <column name="location_id" value="31" />
+	        <where>location_id is null</where>
+	    </update>
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0011">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+		<comment>Set affinity_type to default type where affinity_type is null on Gaac Table</comment>
+		
+	    <update tableName="gaac">
+	        <column name="affinity_type" value="7" />
+	        <where>affinity_type is null</where>
+	    </update>
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0012">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+	    <addNotNullConstraint  
+	    		columnDataType="int(11)"
+	            columnName="affinity_type"   
+	            tableName="gaac"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0013">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+	    <addNotNullConstraint  
+	    		columnDataType="int(11)"
+	            columnName="location_id"   
+	            tableName="gaac"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0014">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		</preConditions>
+		
+	    <addNotNullConstraint  
+	    		columnDataType="char(38)"
+	            columnName="uuid"   
+	            tableName="gaac"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0015">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="gaac_id"  
+	        tableName="gaac_member"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0016">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="member_id"  
+	        tableName="gaac_member"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0017">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="creator"  
+	        tableName="gaac_member"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0018">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="changed_by"  
+	        tableName="gaac_member"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0019">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="date_changed"  
+	        tableName="gaac_member"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0020">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="date_changed"  
+	        tableName="gaac_member"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0021">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		</preConditions>
+		
+	    <addDefaultValue  
+	            columnName="voided"  
+	            defaultValue="0"   
+	            tableName="gaac_member"/>  
+	</changeSet>
+
+	<changeSet  author="jpboane"  id="20210226_0022">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		</preConditions>
+		
+	    <addNotNullConstraint  
+	    		columnDataType="char(38)"
+	            columnName="uuid"   
+	            tableName="gaac_member"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0023">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <update tableName="gaac_family">
+	        <column name="family_identifier" value="UNDIFINED" />
+	        <where>family_identifier is null</where>
+	    </update>
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0024">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <update tableName="gaac_family">
+	        <column name="end_date" />
+	        <where>end_date = '0000-00-00'</where>
+	    </update>
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0025">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <update tableName="gaac_family">
+	        <column name="date_changed" />
+	        <where>date_changed = '0000-00-00'</where>
+	    </update>
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0026">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <update tableName="gaac_family">
+	        <column name="location_id" value="31"/>
+	        <where>location_id is null</where>
+	    </update>
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0027">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <update tableName="gaac_family">
+	        <column name="crumbled" value="0"/>
+	        <where>crumbled is null</where>
+	    </update>
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0028">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <addNotNullConstraint  
+	    		columnDataType="varchar(50)"
+	            columnName="family_identifier"   
+	            tableName="gaac_family"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0029">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="end_date"  
+	        tableName="gaac_family"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0030">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="focal_patient_id"  
+	        tableName="gaac_family"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0031">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <addNotNullConstraint  
+	    		columnDataType="int(11)"
+	            columnName="location_id"   
+	            tableName="gaac_family"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0032">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <addDefaultValue  
+	            columnName="crumbled"  
+	            defaultValue="0"   
+	            tableName="gaac_family"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0033">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <addNotNullConstraint  
+	    		columnDataType="smallint(2)"
+	            columnName="crumbled"   
+	            tableName="gaac_family"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0034">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="creator"  
+	        tableName="gaac_family"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0035">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="changed_by"  
+	        tableName="gaac_family"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0036">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		</preConditions>
+		
+	    <addNotNullConstraint  
+	    		columnDataType="char(38)"
+	            columnName="uuid"   
+	            tableName="gaac_family"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0037">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family_member" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="creator"  
+	        tableName="gaac_family_member"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0038">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family_member" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="family_id"  
+	        tableName="gaac_family_member"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0039">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family_member" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="member_id"  
+	        tableName="gaac_family_member"/>  
+	</changeSet>
+	
+	<changeSet  author="jpboane"  id="20210226_0040">  
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family_member" />
+		</preConditions>
+		
+	    <dropDefaultValue 
+	        columnName="family_member_relacao"  
+	        tableName="gaac_family_member"/>  
+	</changeSet>
+
+	<changeSet author="jpboane" id="20210226_0041">
 		
 		<preConditions onFail="MARK_RAN">
 			<not>
@@ -70,47 +481,176 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
+			
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0042" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_affinity_type" />
+			
+			<not>
+		       <foreignKeyConstraintExists foreignKeyName="user_who_created_type_gaac_affinity_type" />
+		    </not>
+		</preConditions>
+		 		
+		<addForeignKeyConstraint constraintName="user_who_created_type_gaac_affinity_type"
+			baseTableName="gaac_affinity_type" baseColumnNames="creator"
+			referencedTableName="users" referencedColumnNames="user_id" />
+
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0043" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_affinity_type" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="user_who_retired_gaac_affinity_type" />
+		    </not>
+		</preConditions>
+		 		
+		<addForeignKeyConstraint constraintName="user_who_retired_gaac_affinity_type"
+			baseTableName="gaac_affinity_type" baseColumnNames="retired_by"
+			referencedTableName="users" referencedColumnNames="user_id" /> 
+
+	</changeSet>
+		
+		
+	<changeSet author="jpboane"  id="20210226_0044" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_affinity_type" />
+			
+			<not>
+				<indexExists indexName="gaac_affinity_type_uuid_index"/>
+			</not>
+			
+		</preConditions>
 		
 		 <addUniqueConstraint  
 	            columnNames="uuid"  
 	            constraintName="gaac_affinity_type_uuid_index"  
 	            tableName="gaac_affinity_type"/>  
-		      
-		<addForeignKeyConstraint constraintName="user_who_created_type_gaac_affinity_type"
-			baseTableName="gaac_affinity_type" baseColumnNames="creator"
-			referencedTableName="users" referencedColumnNames="user_id" />
-
-		<addForeignKeyConstraint constraintName="user_who_retired_gaac_affinity_type"
-			baseTableName="gaac_affinity_type" baseColumnNames="retired_by"
-			referencedTableName="users" referencedColumnNames="user_id" />  
-			
-		<sql splitStatements="true" stripComments="true" >
-			insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(1,'Amizade','Grupo de amigos',1,now(),'c995afca-d8c1-4b7b-8b0c-37947993df6f');
-			insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(2,'Familiar','Grupo de familias',1,now(),'d86ca8e9-1789-49cb-b7c1-dfdf7f21e1f7');
-			insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(3,'Igreja','Grupo de irmãos que frequentam a mesma igreja',1,now(),'507b327a-c873-4e7b-a464-a37347507de7');	
-			insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(4,'Mesquita','Grupo de irmãos muçulmanos que rezam na mesma mesquita',1,now(),'c7659bd5-27ec-4cd4-9f6e-1cb08e481c5f');
-			insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(5,'Residencia','Grupo de vizinhos',1,now(),'a7a18ce7-b0f5-4a49-b251-0aaea5bf5206');
-			insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(6,'Trabalho','Grupo de colegas de trabalho',1,now(),'f988c01d-274b-4a4b-b924-3bb3550b9f2a');
-			insert into gaac_affinity_type(gaac_affinity_type_id,name,description,creator,date_created,uuid) values(7,'Outro','Outro tipo de grupo',1,now(),'82008fea-de96-47a5-a6f5-a22257075923');
-		</sql>
-			
 	</changeSet>
 	
-	<changeSet id="20210222_1153" author="jpboane">
-		
+	<changeSet author="jpboane"  id="20210226_0045" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_reason_leaving_type" />
+			<tableExists tableName="gaac_affinity_type" />
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 1</sqlCheck>
 		</preConditions>
 		
-		<comment>Ajust Gaac Module gaac_reason_leaving_type Table</comment>
-		
-		<sql splitStatements="true" stripComments="true" >
-			alter table gaac_reason_leaving_type  change creator creator int(11) NOT NULL;
-		</sql>
-		
+	    <insert tableName="gaac_affinity_type">  
+	        <column  name="gaac_affinity_type_id"  value="1"/>  
+	        <column  name="name"  value="Amizade"/>  
+	        <column  name="description"  value="Grupo de amigos"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="c995afca-d8c1-4b7b-8b0c-37947993df6f"/>  
+	    </insert>  
 	</changeSet>
 	
-	<changeSet id="20210222_1045" author="jpboane">
+	<changeSet author="jpboane"  id="20210226_0046" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_affinity_type" />
+			
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 2</sqlCheck>
+		</preConditions>
+		
+	    <insert tableName="gaac_affinity_type">  
+	        <column  name="gaac_affinity_type_id"  value="2"/>  
+	        <column  name="name"  value="Familiar"/>  
+	        <column  name="description"  value="Grupo de familias"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="d86ca8e9-1789-49cb-b7c1-dfdf7f21e1f7"/>  
+	    </insert>  
+	</changeSet>	
+	
+	<changeSet author="jpboane"  id="20210226_0047" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_affinity_type" />
+		
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 3</sqlCheck>
+		</preConditions>
+		
+	    <insert tableName="gaac_affinity_type">  
+	        <column  name="gaac_affinity_type_id"  value="3"/>  
+	        <column  name="name"  value="Igreja"/>  
+	        <column  name="description"  value="Grupo de irmãos que frequentam a mesma igreja"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="507b327a-c873-4e7b-a464-a37347507de7"/>  
+	    </insert>  
+	</changeSet>	
+		
+	<changeSet author="jpboane"  id="20210226_0048" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_affinity_type" />
+			
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 4</sqlCheck>
+		</preConditions>
+		
+	    <insert tableName="gaac_affinity_type">  
+	        <column  name="gaac_affinity_type_id"  value="4"/>  
+	        <column  name="name"  value="Mesquita"/>  
+	        <column  name="description"  value="Grupo de irmãos muçulmanos que rezam na mesma mesquita"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="c7659bd5-27ec-4cd4-9f6e-1cb08e481c5f"/>  
+	    </insert>  
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0049" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_affinity_type" />
+			
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 5</sqlCheck>
+		</preConditions>
+		
+	    <insert tableName="gaac_affinity_type">  
+	        <column  name="gaac_affinity_type_id"  value="5"/>  
+	        <column  name="name"  value="Residencia"/>  
+	        <column  name="description"  value="Grupo de vizinhos"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="a7a18ce7-b0f5-4a49-b251-0aaea5bf5206"/>  
+	    </insert>  
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0050" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_affinity_type" />
+			
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 6</sqlCheck>
+		</preConditions>
+		
+	    <insert tableName="gaac_affinity_type">  
+	        <column  name="gaac_affinity_type_id"  value="6"/>  
+	        <column  name="name"  value="Trabalho"/>  
+	        <column  name="description"  value="Grupo de colegas de trabalho"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="f988c01d-274b-4a4b-b924-3bb3550b9f2a"/>  
+	    </insert>  
+	</changeSet>
+		
+	<changeSet author="jpboane"  id="20210226_0051" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_affinity_type" />
+			
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 7</sqlCheck>
+		</preConditions>
+		
+	    <insert tableName="gaac_affinity_type">  
+	        <column  name="gaac_affinity_type_id"  value="7"/>  
+	        <column  name="name"  value="Outro"/>  
+	        <column  name="description"  value="Outro tipo de grupo"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="82008fea-de96-47a5-a6f5-a22257075923"/>  
+	    </insert>  
+	</changeSet>
+	
+	
+	<changeSet author="jpboane" id="20210226_0052" >
 		<preConditions onFail="MARK_RAN">
 			<not>
 				<tableExists tableName="gaac_reason_leaving_type" />
@@ -160,56 +700,140 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
+	</changeSet>
+	
+	<changeSet author="jpboane" id="20210226_0053" >
+		
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_reason_leaving_type" />
+			
+			<not>
+				<indexExists indexName="gaac_reason_leaving_type_uuid_index"/>
+			</not>
+		</preConditions>
 		
 		<addUniqueConstraint  
-	            columnNames="uuid"  
-	            constraintName="gaac_reason_leaving_type_uuid_index"  
-	            tableName="gaac_reason_leaving_type"/>  
+            columnNames="uuid"  
+            constraintName="gaac_reason_leaving_type_uuid_index"  
+            tableName="gaac_reason_leaving_type"/>  
+	 </changeSet>
 	            
+	<changeSet author="jpboane" id="20210226_0054" >
+		
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_reason_leaving_type" />
+			
+			<not>
+		       <foreignKeyConstraintExists foreignKeyName="user_who_created_gaac_reason_leaving_type" />
+		    </not>
+		</preConditions>
+		
 		<addForeignKeyConstraint constraintName="user_who_created_gaac_reason_leaving_type"
 			baseTableName="gaac_reason_leaving_type" baseColumnNames="creator"
 			referencedTableName="users" referencedColumnNames="user_id" />
-
+	 </changeSet>
+	            	            
+	<changeSet author="jpboane" id="20210226_0055" >
+		
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_reason_leaving_type" />
+			
+			<not>
+		       <foreignKeyConstraintExists foreignKeyName="user_who_retired_gaac_reason_leaving_type" />
+		    </not>
+		</preConditions>
+		
 		<addForeignKeyConstraint constraintName="user_who_retired_gaac_reason_leaving_type"
 			baseTableName="gaac_reason_leaving_type" baseColumnNames="retired_by"
 			referencedTableName="users" referencedColumnNames="user_id" />
-		
-		<sql splitStatements="true" stripComments="true" >
-			insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(1,'Transferido Para','Transferido para outra US',1,now(),'abfc3f72-c55c-4eb6-9004-25a6735a70b9');
-			insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(2,'Desistiu','Desistiram ou foram retirados do Gaac',1,now(),'d7df4950-c2ef-44f0-a8a6-8a328a21a19c');
-			insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(3,'Obitou','Obitou em Gaac',1,now(),'52c37b18-ad27-42ed-851d-dcf1d81471da');
-			insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(4,'Suspenso','Suspenso do Gaac',1,now(),'9dd52ebe-632d-49b2-8aa8-c3a5ca185ffe');
-			insert into gaac_reason_leaving_type(gaac_reason_leaving_type_id,name,description,creator,date_created,uuid) values(5,'Desintegracao','Desintegração do grupo',1,now(),'0ed9d571-36eb-453b-a1f1-785f367f92f1');
-		</sql>
-		
-	</changeSet>
-	
-	<changeSet id="20210222_1155" author="jpboane">
-		
+	 </changeSet>
+	            	 	            
+	<changeSet author="jpboane"  id="20210226_0056" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac" />
+			<tableExists tableName="gaac_reason_leaving_type" />
+			
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_reason_leaving_type WHERE gaac_reason_leaving_type_id = 1</sqlCheck>
 		</preConditions>
 		
-		<comment>Ajust Gaac module gaac table</comment>
-		
-		<sql splitStatements="true" stripComments="true" >
-			update gaac set affinity_type = 7 where affinity_type is null;
-			update gaac  set location_id = 31 where location_id  is null;
+	    <insert tableName="gaac_reason_leaving_type">  
+	        <column  name="gaac_reason_leaving_type_id"  value="1"/>  
+	        <column  name="name"  value="Transferido Para"/>  
+	        <column  name="description"  value="Transferido para outra US"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="abfc3f72-c55c-4eb6-9004-25a6735a70b9"/>  
+	    </insert>  
+	</changeSet>
 			
-			alter table gaac change affinity_type affinity_type int(11) NOT NULL;
-			alter table gaac  change location_id location_id int(11) NOT NULL;
-			alter table gaac  change end_date end_date datetime NULL;
-			alter table gaac  change focal_patient_id focal_patient_id int(11) NULL;
-			alter table gaac  change affinity_type affinity_type int(11) NULL;
-			alter table gaac change date_crumbled date_crumbled datetime NULL DEFAULT NULL;
-			alter table gaac change date_changed date_changed datetime NULL DEFAULT NULL;
-			alter table gaac change voided voided smallint(6) NOT NULL DEFAULT '0';
-			alter table gaac change date_changed date_changed datetime NULL DEFAULT NULL;
-			alter table gaac change uuid uuid char(38) NOT NULL;
-		</sql>
+	<changeSet author="jpboane"  id="20210226_0057" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_reason_leaving_type" />
+			
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_reason_leaving_type WHERE gaac_reason_leaving_type_id = 2</sqlCheck>
+		</preConditions>
+		
+	    <insert tableName="gaac_reason_leaving_type">  
+	        <column  name="gaac_reason_leaving_type_id"  value="2"/>  
+	        <column  name="name"  value="Desistiu"/>  
+	        <column  name="description"  value="Desistiram ou foram retirados do Gaac"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="d7df4950-c2ef-44f0-a8a6-8a328a21a19c"/>  
+	    </insert>  
 	</changeSet>
 	
-	<changeSet id="20210222_1100" author="jpboane">
+	<changeSet author="jpboane"  id="20210226_0058" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_reason_leaving_type" />
+			
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_reason_leaving_type WHERE gaac_reason_leaving_type_id = 3</sqlCheck>
+		</preConditions>
+		
+	    <insert tableName="gaac_reason_leaving_type">  
+	        <column  name="gaac_reason_leaving_type_id"  value="3"/>  
+	        <column  name="name"  value="Obitou"/>  
+	        <column  name="description"  value="Obitou em Gaac"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="52c37b18-ad27-42ed-851d-dcf1d81471da"/>  
+	    </insert>  
+	</changeSet>
+
+	<changeSet author="jpboane"  id="20210226_0059" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_reason_leaving_type" />
+			
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_reason_leaving_type WHERE gaac_reason_leaving_type_id = 4</sqlCheck>
+		</preConditions>
+		
+	    <insert tableName="gaac_reason_leaving_type">  
+	        <column  name="gaac_reason_leaving_type_id"  value="4"/>  
+	        <column  name="name"  value="Suspenso"/>  
+	        <column  name="description"  value="Suspenso do Gaac"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="9dd52ebe-632d-49b2-8aa8-c3a5ca185ffe"/>  
+	    </insert>  
+	</changeSet>
+
+	<changeSet author="jpboane"  id="20210226_0100" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_reason_leaving_type" />
+			
+			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_reason_leaving_type WHERE gaac_reason_leaving_type_id = 5</sqlCheck>
+		</preConditions>
+		
+	    <insert tableName="gaac_reason_leaving_type">  
+	        <column  name="gaac_reason_leaving_type_id"  value="5"/>  
+	        <column  name="name"  value="Desintegracao"/>  
+	        <column  name="description"  value="Desintegração do grupo"/>  
+	        <column  name="creator"  value="1"/>  
+	        <column  name="date_created"  valueDate="now()"/>  
+	        <column  name="uuid"  value="0ed9d571-36eb-453b-a1f1-785f367f92f1"/>  
+	    </insert>  
+	</changeSet>			
+	
+	<changeSet author="jpboane" id="20210226_0101">
 		
 		<preConditions onFail="MARK_RAN">
 			<not>
@@ -250,11 +874,11 @@
 			</column>
 
 			<column name="affinity_type" type="int(11)">
-				<constraints nullable="true" />
+				<constraints nullable="false" />
 			</column>
 
 			<column name="location_id" type="int(11)">
-				<constraints nullable="true" />
+				<constraints nullable="false" />
 			</column>
 
 			<column name="crumbled" type="smallint(2)">
@@ -305,53 +929,117 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
-
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0102" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_affinity" />
+		    </not>
+		</preConditions>
+		 		
 		<addForeignKeyConstraint constraintName="fk_gaac_affinity"
 			baseTableName="gaac" baseColumnNames="affinity_type"
-			referencedTableName="gaac_affinity_type" referencedColumnNames="gaac_affinity_type_id" />
+			referencedTableName="gaac_affinity_type" referencedColumnNames="gaac_affinity_type_id" /> 
 
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0103" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_affinity" />
+		    </not>
+		</preConditions>
+		 		
 		<addForeignKeyConstraint constraintName="fk_gaac_focal_patient"
 			baseTableName="gaac" baseColumnNames="focal_patient_id"
 			referencedTableName="patient" referencedColumnNames="patient_id"
 			onDelete="SET NULL" onUpdate="CASCADE" />
 
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0104" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_location" />
+		    </not>
+		</preConditions>
+		 		
 		<addForeignKeyConstraint constraintName="fk_gaac_location"
 			baseTableName="gaac" baseColumnNames="location_id"
 			referencedTableName="location" referencedColumnNames="location_id" />
 
+	</changeSet>	
 
+	<changeSet author="jpboane"  id="20210226_0105" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_user_who_changed" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_gaac_user_who_changed"
 			baseTableName="gaac" baseColumnNames="changed_by"
 			referencedTableName="users" referencedColumnNames="user_id" />
 
+	</changeSet>
+
+
+	<changeSet author="jpboane"  id="20210226_0106" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_user_who_created" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_gaac_user_who_created"
 			baseTableName="gaac" baseColumnNames="creator" referencedTableName="users"
 			referencedColumnNames="user_id" />
 
-		<addForeignKeyConstraint constraintName="fk_gaac_user_who_voided"
-			baseTableName="gaac" baseColumnNames="voided_by" referencedTableName="users"
-			referencedColumnNames="user_id" />
 	</changeSet>
-	
-	<changeSet id="20210222_1212" author="jpboane">
-		
+
+	<changeSet author="jpboane"  id="20210226_0107" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_member" />
+			<tableExists tableName="gaac" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_user_who_voided" />
+		    </not>
+		</preConditions>
+	
+		<addForeignKeyConstraint constraintName="fk_gaac_user_who_voided"
+				baseTableName="gaac" baseColumnNames="voided_by" referencedTableName="users"
+				referencedColumnNames="user_id" />
+
+	</changeSet>
+
+	<changeSet author="jpboane"  id="20210226_0108" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac" />
+			
+			<not>
+				<indexExists indexName="gaac_uuid_index"/>
+			</not>
+			
 		</preConditions>
 		
-		<comment>Ajust Gaac module gaac_member table</comment>
-		
-		<sql splitStatements="true" stripComments="true" >
-			alter table gaac_member change gaac_id gaac_id int(11) NOT NULL;
-			alter table gaac_member change member_id member_id int(11) NOT NULL;
-			alter table gaac_member change creator creator int(11) NOT NULL;
-			alter table gaac_member change date_changed date_changed datetime NULL DEFAULT NULL;
-			alter table gaac_member change voided voided smallint(6) NOT NULL DEFAULT '0';
-			alter table gaac_member change uuid uuid char(38) NOT NULL;
-		</sql>
+		 <addUniqueConstraint  
+	            columnNames="uuid"  
+	            constraintName="gaac_uuid_index"  
+	            tableName="gaac"/>  
 	</changeSet>
 	
-	<changeSet id="20210222_1115" author="jpboane">
+	<changeSet author="jpboane" id="20210226_0109">
 		
 		<preConditions onFail="MARK_RAN">
 			<not>
@@ -416,7 +1104,7 @@
 			</column>
 
 			<column name="date_changed" type="datetime">
-				<constraints nullable="false" />
+				<constraints nullable="true" />
 			</column>
 
 			<column name="voided" type="smallint(6)" defaultValueNumeric="0">
@@ -439,67 +1127,120 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
+		
+	</changeSet>
+	
 
-		<addForeignKeyConstraint constraintName="fk_gaac_member_gaac"
+	<changeSet author="jpboane"  id="20210226_0110" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_gaac" />
+		    </not>
+		</preConditions>
+	
+	<addForeignKeyConstraint constraintName="fk_gaac_member_gaac"
 			baseTableName="gaac_member" baseColumnNames="gaac_id"
 			referencedTableName="gaac" referencedColumnNames="gaac_id" onDelete="CASCADE"
 			onUpdate="CASCADE" />
 
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0111" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_patient" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_gaac_member_patient"
 			baseTableName="gaac_member" baseColumnNames="member_id"
 			referencedTableName="patient" referencedColumnNames="patient_id"
 			onDelete="CASCADE" onUpdate="CASCADE" />
 
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0112" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_reason_leaving" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_gaac_member_reason_leaving"
 			baseTableName="gaac_member" baseColumnNames="reason_leaving_type"
 			referencedTableName="gaac_reason_leaving_type" referencedColumnNames="gaac_reason_leaving_type_id" />
 
+	</changeSet>
+
+	<changeSet author="jpboane"  id="20210226_0113" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_user_who_changed" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_gaac_member_user_who_changed"
 			baseTableName="gaac_member" baseColumnNames="changed_by"
 			referencedTableName="users" referencedColumnNames="user_id" />
 
+	</changeSet>
+
+	<changeSet author="jpboane"  id="20210226_0114" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_user_who_created" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_gaac_member_user_who_created"
 			baseTableName="gaac_member" baseColumnNames="creator"
 			referencedTableName="users" referencedColumnNames="user_id" />
 
+	</changeSet>
+
+	<changeSet author="jpboane"  id="20210226_0115" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_user_who_voided" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_gaac_member_user_who_voided"
 			baseTableName="gaac_member" baseColumnNames="voided_by"
 			referencedTableName="users" referencedColumnNames="user_id" />
+
 	</changeSet>
-	
-	<changeSet  id="20210222_1202" author="jpboane">
-	
+
+	<changeSet author="jpboane"  id="20210226_0116" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family" />
+			<tableExists tableName="gaac_member" />
+			
+			<not>
+				<indexExists indexName="gaac_member_uuid_index"/>
+			</not>
+			
 		</preConditions>
 		
-		<comment>Ajust Gaac module gaac_family table</comment>
-		
-		<sql splitStatements="true" stripComments="true" >
-			update gaac_family set family_identifier = 'UNDIFINED' where family_identifier is null;
-			update gaac_family set end_date = null where end_date = '0000-00-00';
-			update gaac_family set date_changed = null where date_changed = '0000-00-00';
-			update gaac_family set location_id = 31 where location_id  is null;
-			update gaac_family set crumbled = 0 where crumbled  is null;
-		
-			alter table gaac_family DROP FOREIGN KEY fk_family_focal_patient;
-			
-			
-			alter table gaac_family change family_identifier family_identifier varchar(50) NOT NULL;
-			alter table gaac_family change end_date end_date datetime NULL;
-			alter table gaac_family change focal_patient_id focal_patient_id int(11) NULL; 
-			alter table gaac_family  change location_id location_id int(11) NOT NULL;
-			alter table gaac_family change crumbled crumbled smallint(2) NOT NULL DEFAULT 0;
-			alter table gaac_family change creator creator int(11) NOT NULL;
-			alter table gaac_family change changed_by changed_by int(11) NULL;
-			alter table gaac_family change uuid uuid char(38) NOT NULL;
-			
-			alter table gaac_family add constraint `fk_family_focal_patient` FOREIGN KEY (`focal_patient_id`) REFERENCES `patient` (`patient_id`);
-		</sql>
+		 <addUniqueConstraint  
+	            columnNames="uuid"  
+	            constraintName="gaac_member_uuid_index"  
+	            tableName="gaac_member"/>  
 	</changeSet>
 	
 	
-	<changeSet id="20210222_1124" author="jpboane">
+	<changeSet author="jpboane" id="20210226_0117" >
 		
 		<preConditions onFail="MARK_RAN">
 			<not>
@@ -552,6 +1293,10 @@
 				<constraints nullable="false" />
 			</column>
 
+			<column name="date_created" type="datetime">
+				<constraints nullable="false" />
+			</column>
+			
 			<column name="changed_by" type="int">
 				<constraints nullable="true" />
 			</column>
@@ -580,46 +1325,101 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
-
+		
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0118" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_focal_patient" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_family_focal_patient"
 			baseTableName="gaac_family" baseColumnNames="focal_patient_id"
 			referencedTableName="patient" referencedColumnNames="patient_id" />
 
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0119" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_location" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_family_location"
 			baseTableName="gaac_family" baseColumnNames="location_id"
 			referencedTableName="location" referencedColumnNames="location_id" />
 
+	</changeSet>
+
+	<changeSet author="jpboane"  id="20210226_0120" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_user_who_created" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_family_user_who_created"
 			baseTableName="gaac_family" baseColumnNames="creator"
 			referencedTableName="users" referencedColumnNames="user_id" />
 
+	</changeSet>
+
+	<changeSet author="jpboane"  id="20210226_0121" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_user_who_changed" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_family_user_who_changed"
 			baseTableName="gaac_family" baseColumnNames="changed_by"
 			referencedTableName="users" referencedColumnNames="user_id" />
 
+	</changeSet>
+
+	<changeSet author="jpboane"  id="20210226_0122" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_user_who_voided" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_family_user_who_voided"
 			baseTableName="gaac_family" baseColumnNames="voided_by"
 			referencedTableName="users" referencedColumnNames="user_id" />
-		
+
 	</changeSet>
-	
-	<changeSet id="20210222_1215" author="jpboane">
-		
+
+	<changeSet author="jpboane"  id="20210226_0123" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family_member" />
+			<tableExists tableName="gaac_family" />
+			
+			<not>
+				<indexExists indexName="gaac_family_uuid_index"/>
+			</not>
+			
 		</preConditions>
 		
-		<comment>Ajust Gaac module gaac_family_member table</comment>
-	
-		<sql splitStatements="true" stripComments="true" >
-			alter table gaac_family_member change family_id family_id int(11) NOT NULL;
-			alter table gaac_family_member change member_id member_id int(11) NOT NULL;
-			alter table gaac_family_member change family_member_relacao family_member_relacao int(11) NULL;
-			alter table gaac_family_member change creator creator int(11) NOT NULL;
-		</sql>
+		 <addUniqueConstraint  
+	            columnNames="uuid"  
+	            constraintName="gaac_family_uuid_index"  
+	            tableName="gaac_family"/>  
 	</changeSet>
 	
-	<changeSet id="20210222_1131" author="jpboane">
+	<changeSet author="jpboane"  id="20210226_0124" >
 		
 		<preConditions onFail="MARK_RAN">
 			<not>
@@ -709,35 +1509,112 @@
 
 		</createTable>
 
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0125" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_patient" />
+		    </not>
+		</preConditions>
+	
 		<addForeignKeyConstraint constraintName="fk_family_member_patient"
 			baseTableName="gaac_family_member" baseColumnNames="member_id"
 			referencedTableName="patient" referencedColumnNames="patient_id" />
 
-		<addForeignKeyConstraint constraintName="fk_family_member_family"
-			baseTableName="gaac_family_member" baseColumnNames="family_id"
-			referencedTableName="gaac_family" referencedColumnNames="family_id" />
-			
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0126" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_user_who_voided" />
+		    </not>
+		</preConditions>
 
-		<addForeignKeyConstraint constraintName="fk_family_member_relacao"
-			baseTableName="gaac_family_member" baseColumnNames="family_member_relacao"
-			referencedTableName="relationship" referencedColumnNames="relationship_id" />
-
-
-		<addForeignKeyConstraint constraintName="fk_family_member_reason_leaving"
-			baseTableName="gaac_family_member" baseColumnNames="reason_leaving_type"
-			referencedTableName="gaac_reason_leaving_type" referencedColumnNames="gaac_reason_leaving_type_id" />
-
-		<addForeignKeyConstraint constraintName="fk_family_member_user_who_created"
-			baseTableName="gaac_family_member" baseColumnNames="creator"
+		<addForeignKeyConstraint constraintName="fk_family_member_user_who_voided"
+			baseTableName="gaac_family_member" baseColumnNames="voided_by"
 			referencedTableName="users" referencedColumnNames="user_id" />
+
+	</changeSet>
+	
+		<changeSet author="jpboane"  id="20210226_0127" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_user_who_changed" />
+		    </not>
+		</preConditions>
 
 		<addForeignKeyConstraint constraintName="fk_family_member_user_who_changed"
 			baseTableName="gaac_family_member" baseColumnNames="changed_by"
 			referencedTableName="users" referencedColumnNames="user_id" />
 
-		<addForeignKeyConstraint constraintName="fk_family_member_user_who_voided"
-			baseTableName="gaac_family_member" baseColumnNames="voided_by"
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0128" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_user_who_created" />
+		    </not>
+		</preConditions>
+
+		<addForeignKeyConstraint constraintName="fk_family_member_user_who_created"
+			baseTableName="gaac_family_member" baseColumnNames="creator"
 			referencedTableName="users" referencedColumnNames="user_id" />
+
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0129" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_relacao" />
+		    </not>
+		</preConditions>
+
+		<addForeignKeyConstraint constraintName="fk_family_member_relacao"
+			baseTableName="gaac_family_member" baseColumnNames="family_member_relacao"
+			referencedTableName="relationship" referencedColumnNames="relationship_id" />
+
+	</changeSet>
+	
+	<changeSet author="jpboane"  id="20210226_0130" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family_member" />
+		
+		    <not>
+		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_reason_leaving" />
+		    </not>
+		</preConditions>
+
+		<addForeignKeyConstraint constraintName="fk_family_member_reason_leaving"
+			baseTableName="gaac_family_member" baseColumnNames="reason_leaving_type"
+			referencedTableName="gaac_reason_leaving_type" referencedColumnNames="gaac_reason_leaving_type_id" />
+
+	</changeSet>	
+			
+	<changeSet author="jpboane"  id="20210226_0131" >
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="gaac_family" />
+			
+			<not>
+				<indexExists indexName="gaac_family_member_uuid_index"/>
+			</not>
+			
+		</preConditions>
+		
+		 <addUniqueConstraint  
+	            columnNames="uuid"  
+	            constraintName="gaac_family_member_uuid_index"  
+	            tableName="gaac_family_member"/>  
 	</changeSet>
 	
 </databaseChangeLog>
