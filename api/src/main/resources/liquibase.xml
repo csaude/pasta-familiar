@@ -742,8 +742,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0042" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_affinity_type" />
-			
 			<not>
 		       <foreignKeyConstraintExists foreignKeyName="user_who_created_type_gaac_affinity_type" />
 		    </not>
@@ -757,9 +755,7 @@
 	
 	<changeSet author="jpboane"  id="20210226_0043" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_affinity_type" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="user_who_retired_gaac_affinity_type" />
 		    </not>
 		</preConditions>
@@ -773,8 +769,6 @@
 		
 	<changeSet author="jpboane"  id="20210226_0044" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_affinity_type" />
-			
 			<not>
 				<indexExists indexName="gaac_affinity_type_uuid_index"/>
 			</not>
@@ -789,7 +783,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0045" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_affinity_type" />
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 1</sqlCheck>
 		</preConditions>
 		
@@ -805,8 +798,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0046" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_affinity_type" />
-			
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 2</sqlCheck>
 		</preConditions>
 		
@@ -822,8 +813,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0047" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_affinity_type" />
-		
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 3</sqlCheck>
 		</preConditions>
 		
@@ -839,8 +828,6 @@
 		
 	<changeSet author="jpboane"  id="20210226_0048" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_affinity_type" />
-			
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 4</sqlCheck>
 		</preConditions>
 		
@@ -856,8 +843,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0049" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_affinity_type" />
-			
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 5</sqlCheck>
 		</preConditions>
 		
@@ -873,8 +858,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0050" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_affinity_type" />
-			
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 6</sqlCheck>
 		</preConditions>
 		
@@ -890,8 +873,6 @@
 		
 	<changeSet author="jpboane"  id="20210226_0051" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_affinity_type" />
-			
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_affinity_type WHERE gaac_affinity_type_id = 7</sqlCheck>
 		</preConditions>
 		
@@ -961,8 +942,6 @@
 	<changeSet author="jpboane" id="20210226_0053" >
 		
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_reason_leaving_type" />
-			
 			<not>
 				<indexExists indexName="gaac_reason_leaving_type_uuid_index"/>
 			</not>
@@ -977,8 +956,6 @@
 	<changeSet author="jpboane" id="20210226_0054" >
 		
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_reason_leaving_type" />
-			
 			<not>
 		       <foreignKeyConstraintExists foreignKeyName="user_who_created_gaac_reason_leaving_type" />
 		    </not>
@@ -992,8 +969,7 @@
 	<changeSet author="jpboane" id="20210226_0055" >
 		
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_reason_leaving_type" />
-			
+				
 			<not>
 		       <foreignKeyConstraintExists foreignKeyName="user_who_retired_gaac_reason_leaving_type" />
 		    </not>
@@ -1006,8 +982,6 @@
 	            	 	            
 	<changeSet author="jpboane"  id="20210226_0056" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_reason_leaving_type" />
-			
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_reason_leaving_type WHERE gaac_reason_leaving_type_id = 1</sqlCheck>
 		</preConditions>
 		
@@ -1023,8 +997,6 @@
 			
 	<changeSet author="jpboane"  id="20210226_0057" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_reason_leaving_type" />
-			
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_reason_leaving_type WHERE gaac_reason_leaving_type_id = 2</sqlCheck>
 		</preConditions>
 		
@@ -1040,8 +1012,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0058" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_reason_leaving_type" />
-			
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_reason_leaving_type WHERE gaac_reason_leaving_type_id = 3</sqlCheck>
 		</preConditions>
 		
@@ -1057,8 +1027,6 @@
 
 	<changeSet author="jpboane"  id="20210226_0059" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_reason_leaving_type" />
-			
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_reason_leaving_type WHERE gaac_reason_leaving_type_id = 4</sqlCheck>
 		</preConditions>
 		
@@ -1074,8 +1042,6 @@
 
 	<changeSet author="jpboane"  id="20210226_0100" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_reason_leaving_type" />
-			
 			<sqlCheck  expectedResult="0">SELECT count(*) FROM gaac_reason_leaving_type WHERE gaac_reason_leaving_type_id = 5</sqlCheck>
 		</preConditions>
 		
@@ -1189,8 +1155,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0102" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac" />
-		
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_affinity" />
 		    </not>
@@ -1204,9 +1168,7 @@
 	
 	<changeSet author="jpboane"  id="20210226_0103" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_affinity" />
 		    </not>
 		</preConditions>
@@ -1220,9 +1182,7 @@
 	
 	<changeSet author="jpboane"  id="20210226_0104" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_location" />
 		    </not>
 		</preConditions>
@@ -1235,9 +1195,7 @@
 
 	<changeSet author="jpboane"  id="20210226_0105" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_user_who_changed" />
 		    </not>
 		</preConditions>
@@ -1251,8 +1209,6 @@
 
 	<changeSet author="jpboane"  id="20210226_0106" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac" />
-		
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_user_who_created" />
 		    </not>
@@ -1266,9 +1222,7 @@
 
 	<changeSet author="jpboane"  id="20210226_0107" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_user_who_voided" />
 		    </not>
 		</preConditions>
@@ -1281,8 +1235,6 @@
 
 	<changeSet author="jpboane"  id="20210226_0108" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac" />
-			
 			<not>
 				<indexExists indexName="gaac_uuid_index"/>
 			</not>
@@ -1389,8 +1341,6 @@
 
 	<changeSet author="jpboane"  id="20210226_0110" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_member" />
-		
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_gaac" />
 		    </not>
@@ -1405,8 +1355,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0111" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_member" />
-		
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_patient" />
 		    </not>
@@ -1421,8 +1369,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0112" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_member" />
-		
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_reason_leaving" />
 		    </not>
@@ -1436,8 +1382,6 @@
 
 	<changeSet author="jpboane"  id="20210226_0113" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_member" />
-		
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_user_who_changed" />
 		    </not>
@@ -1451,9 +1395,7 @@
 
 	<changeSet author="jpboane"  id="20210226_0114" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_member" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_user_who_created" />
 		    </not>
 		</preConditions>
@@ -1466,8 +1408,6 @@
 
 	<changeSet author="jpboane"  id="20210226_0115" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_member" />
-		
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_gaac_member_user_who_voided" />
 		    </not>
@@ -1481,8 +1421,6 @@
 
 	<changeSet author="jpboane"  id="20210226_0116" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_member" />
-			
 			<not>
 				<indexExists indexName="gaac_member_uuid_index"/>
 			</not>
@@ -1585,8 +1523,7 @@
 	
 	<changeSet author="jpboane"  id="20210226_0118" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family" />
-		
+			
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_focal_patient" />
 		    </not>
@@ -1600,8 +1537,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0119" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family" />
-		
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_location" />
 		    </not>
@@ -1615,9 +1550,7 @@
 
 	<changeSet author="jpboane"  id="20210226_0120" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_user_who_created" />
 		    </not>
 		</preConditions>
@@ -1630,9 +1563,7 @@
 
 	<changeSet author="jpboane"  id="20210226_0121" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family" />
-		
-		    <not>
+		   <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_user_who_changed" />
 		    </not>
 		</preConditions>
@@ -1645,8 +1576,6 @@
 
 	<changeSet author="jpboane"  id="20210226_0122" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family" />
-		
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_user_who_voided" />
 		    </not>
@@ -1660,8 +1589,6 @@
 
 	<changeSet author="jpboane"  id="20210226_0123" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family" />
-			
 			<not>
 				<indexExists indexName="gaac_family_uuid_index"/>
 			</not>
@@ -1768,8 +1695,6 @@
 	
 	<changeSet author="jpboane"  id="20210226_0125" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family_member" />
-		
 		    <not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_patient" />
 		    </not>
@@ -1783,9 +1708,7 @@
 	
 	<changeSet author="jpboane"  id="20210226_0126" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family_member" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_user_who_voided" />
 		    </not>
 		</preConditions>
@@ -1798,9 +1721,7 @@
 	
 		<changeSet author="jpboane"  id="20210226_0127" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family_member" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_user_who_changed" />
 		    </not>
 		</preConditions>
@@ -1813,9 +1734,7 @@
 	
 	<changeSet author="jpboane"  id="20210226_0128" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family_member" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_user_who_created" />
 		    </not>
 		</preConditions>
@@ -1828,9 +1747,7 @@
 	
 	<changeSet author="jpboane"  id="20210226_0129" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family_member" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_relacao" />
 		    </not>
 		</preConditions>
@@ -1843,9 +1760,7 @@
 	
 	<changeSet author="jpboane"  id="20210226_0130" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family_member" />
-		
-		    <not>
+			<not>
 		       <foreignKeyConstraintExists foreignKeyName="fk_family_member_reason_leaving" />
 		    </not>
 		</preConditions>
@@ -1858,8 +1773,6 @@
 			
 	<changeSet author="jpboane"  id="20210226_0131" >
 		<preConditions onFail="MARK_RAN">
-			<tableExists tableName="gaac_family" />
-			
 			<not>
 				<indexExists indexName="gaac_family_member_uuid_index"/>
 			</not>
