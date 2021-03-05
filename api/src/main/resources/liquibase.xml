@@ -147,7 +147,7 @@
 		<comment>Add not null constraint to gaac.affinity_type</comment>
 		
 	    <addNotNullConstraint  
-	    		columnDataType="int(11)"
+	    		columnDataType="int"
 	            columnName="affinity_type"   
 	            tableName="gaac"/>  
 	</changeSet>
@@ -160,7 +160,7 @@
 		<comment>Add not null constraint to gaac.location_id</comment>
 		
 	    <addNotNullConstraint  
-	    		columnDataType="int(11)"
+	    		columnDataType="int"
 	            columnName="location_id"   
 	            tableName="gaac"/>  
 	</changeSet>
@@ -386,7 +386,7 @@
 		<comment>Add not null constraint to gaac_family.location_id</comment>
 		
 	    <addNotNullConstraint  
-	    		columnDataType="int(11)"
+	    		columnDataType="int"
 	            columnName="location_id"   
 	            tableName="gaac_family"/>  
 	</changeSet>
@@ -697,7 +697,7 @@
 		<comment>Add gaac affinity type table</comment>
 		
 		<createTable tableName="gaac_affinity_type">
-			<column name="gaac_affinity_type_id" type="int(11)">
+			<column name="gaac_affinity_type_id" type="int" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
@@ -709,7 +709,7 @@
 				<constraints nullable="true" />
 			</column>
 
-			<column name="creator" type="int(11)">
+			<column name="creator" type="int">
 				<constraints nullable="false" />
 			</column>
 
@@ -721,7 +721,7 @@
 				<constraints nullable="false" />
 			</column>
 
-			<column name="retired_by" type="int(11)">
+			<column name="retired_by" type="int">
 				<constraints nullable="true" />
 			</column>
 
@@ -897,7 +897,7 @@
 		<comment>added gaac gaac reason leaving type table</comment>
 	
 		<createTable tableName="gaac_reason_leaving_type">
-			<column name="gaac_reason_leaving_type_id" type="int(11)">
+			<column name="gaac_reason_leaving_type_id" type="int" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
@@ -909,7 +909,7 @@
 				<constraints nullable="true" />
 			</column>
 
-			<column name="creator" type="int(11)">
+			<column name="creator" type="int">
 				<constraints nullable="false" />
 			</column>
 
@@ -921,7 +921,7 @@
 				<constraints nullable="false" />
 			</column>
 
-			<column name="retired_by" type="int(11)">
+			<column name="retired_by" type="int">
 				<constraints nullable="true" />
 			</column>
 
@@ -1067,7 +1067,7 @@
 		
 		<createTable tableName="gaac">
 
-			<column name="gaac_id" type="int(11)" autoIncrement="true">
+			<column name="gaac_id" type="int" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
@@ -1091,15 +1091,15 @@
 				<constraints nullable="true" />
 			</column>
 			
-			<column name="focal_patient_id" type="int(11)">
+			<column name="focal_patient_id" type="int">
 				<constraints nullable="true" />
 			</column>
 
-			<column name="affinity_type" type="int(11)">
+			<column name="affinity_type" type="int">
 				<constraints nullable="false" />
 			</column>
 
-			<column name="location_id" type="int(11)">
+			<column name="location_id" type="int">
 				<constraints nullable="false" />
 			</column>
 
@@ -1115,7 +1115,7 @@
 				<constraints nullable="true" />
 			</column>
 
-			<column name="creator" type="int(11)">
+			<column name="creator" type="int">
 				<constraints nullable="false" />
 			</column>
 
@@ -1123,7 +1123,7 @@
 				<constraints nullable="false" />
 			</column>
 
-			<column name="changed_by" type="int(11)">
+			<column name="changed_by" type="int">
 				<constraints nullable="true" />
 			</column>
 
@@ -1135,7 +1135,7 @@
 				<constraints nullable="false" />
 			</column>
 
-			<column name="voided_by" type="int(11)">
+			<column name="voided_by" type="int">
 				<constraints nullable="true" />
 			</column>
 
@@ -1259,15 +1259,15 @@
 		
 		<createTable tableName="gaac_member">
 
-			<column name="gaac_member_id" type="int(11)" autoIncrement="true">
+			<column name="gaac_member_id" type="int" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
-			<column name="gaac_id" type="int(11)">
+			<column name="gaac_id" type="int">
 				<constraints nullable="false" />
 			</column>
 
-			<column name="member_id" type="int(11)">
+			<column name="member_id" type="int">
 				<constraints nullable="false" />
 			</column>
 
@@ -1279,7 +1279,7 @@
 				<constraints nullable="true" />
 			</column>
 
-			<column name="reason_leaving_type" type="int(11)">
+			<column name="reason_leaving_type" type="int">
 				<constraints nullable="true" />
 			</column>
 
@@ -1299,7 +1299,7 @@
 				<constraints nullable="true" />
 			</column>
 
-			<column name="creator" type="int(11)">
+			<column name="creator" type="int">
 				<constraints nullable="false" />
 			</column>
 
@@ -1307,7 +1307,7 @@
 				<constraints nullable="false" />
 			</column>
 
-			<column name="changed_by" type="int(11)">
+			<column name="changed_by" type="int">
 				<constraints nullable="true" />
 			</column>
 
@@ -1319,7 +1319,7 @@
 				<constraints nullable="false" />
 			</column>
 
-			<column name="voided_by" type="int(11)">
+			<column name="voided_by" type="int">
 				<constraints nullable="true" />
 			</column>
 
@@ -1446,7 +1446,7 @@
 		
 		<createTable tableName="gaac_family">
 
-			<column name="family_id" type="int(11)" autoIncrement="true">
+			<column name="family_id" type="int" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
@@ -1462,11 +1462,11 @@
 				<constraints nullable="true" />
 			</column>
 
-			<column name="focal_patient_id" type="int(11)">
+			<column name="focal_patient_id" type="int">
 				<constraints nullable="true" />
 			</column>
 			
-			<column name="location_id" type="int(11)">
+			<column name="location_id" type="int">
 				<constraints nullable="false" />
 			</column>
 
@@ -1482,7 +1482,7 @@
 				<constraints nullable="true" />
 			</column>
 
-			<column name="creator" type="int(11)">
+			<column name="creator" type="int">
 				<constraints nullable="false" />
 			</column>
 
@@ -1502,7 +1502,7 @@
 				<constraints nullable="false" />
 			</column>
 
-			<column name="voided_by" type="int(11)">
+			<column name="voided_by" type="int">
 				<constraints nullable="true" />
 			</column>
 			
@@ -1613,19 +1613,19 @@
 		
 		<createTable tableName="gaac_family_member">
 
-			<column name="family_member_id" type="int(11)" autoIncrement="true">
+			<column name="family_member_id" type="int" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
-			<column name="family_id" type="int(11)">
+			<column name="family_id" type="int">
 				<constraints nullable="false" />
 			</column>
 
-			<column name="member_id" type="int(11)">
+			<column name="member_id" type="int">
 				<constraints nullable="false" />
 			</column>
 
-			<column name="family_member_relacao" type="int(11)">
+			<column name="family_member_relacao" type="int">
 				<constraints nullable="true" />
 			</column>
 
@@ -1637,7 +1637,7 @@
 				<constraints nullable="true" />
 			</column>
 
-			<column name="reason_leaving_type" type="int(11)">
+			<column name="reason_leaving_type" type="int">
 				<constraints nullable="true" />
 			</column>
 
@@ -1653,7 +1653,7 @@
 				<constraints nullable="true" />
 			</column>
 
-			<column name="creator" type="int(11)">
+			<column name="creator" type="int">
 				<constraints nullable="false" />
 			</column>
 
@@ -1661,7 +1661,7 @@
 				<constraints nullable="false" />
 			</column>
 
-			<column name="changed_by" type="int(11)">
+			<column name="changed_by" type="int">
 				<constraints nullable="true" />
 			</column>
 
@@ -1673,7 +1673,7 @@
 				<constraints nullable="false" />
 			</column>
 
-			<column name="voided_by" type="int(11)">
+			<column name="voided_by" type="int">
 				<constraints nullable="true" />
 			</column>
 
